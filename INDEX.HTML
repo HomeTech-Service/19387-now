@@ -1,0 +1,1223 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">HomeTech Service | مركز صيانة الأجهزة المنزلية</title>
+<meta name="description" id="pageDesc" content="مركز صيانة وإصلاح الأجهزة المنزلية - خط ساخن 19387 - واتساب 01102670999">
+<link href="https://cdn.jsdelivr.net/gh/fontsource/fontsource@main/fonts/arabic/cairo/css/variable-full.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#D4AF37;--gold-dark:#B8860B;--black:#1a1a1a;--black-light:#2c2c2c;--white:#fff;--gray:#6c757d;--gray-light:#f8f9fa;--whatsapp:#25D366;--whatsapp-dark:#128C7E}
+body{font-family:'Cairo',sans-serif;background:var(--white);color:var(--black);line-height:1.7}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* Top Contact Bar - Always Visible */
+.top-contact-bar{
+  position:fixed;top:0;left:0;right:0;
+  background:linear-gradient(90deg,var(--black),var(--black-light));
+  color:var(--white);
+  padding:10px 20px;
+  z-index:1100;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  flex-wrap:wrap;
+  border-bottom:3px solid var(--gold);
+  font-size:.95rem;
+}
+.top-contact-bar a{
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:700;transition:all .3s;
+}
+.top-contact-bar a:hover{color:var(--gold)}
+.top-contact-bar .hotline-link{color:var(--gold)}
+.top-contact-bar .whatsapp-link{color:#7CFC7C}
+.top-contact-bar .separator{color:rgba(255,255,255,0.3)}
+
+/* Navbar */
+.navbar{
+  position:fixed;top:45px;left:0;right:0;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 20px rgba(0,0,0,0.08);
+  z-index:1000;padding:15px 0;
+  transition:all .3s;
+}
+.nav-container{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.5rem}
+.logo-icon{width:45px;height:45px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.3rem}
+.nav-links{display:flex;gap:25px;list-style:none}
+.nav-links a{font-weight:600;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--whatsapp);color:var(--white)!important;padding:10px 20px;border-radius:8px;font-weight:700}
+.menu-toggle{display:none;background:none;border:none;font-size:1.8rem;cursor:pointer}
+
+/* Hero */
+.hero{min-height:100vh;background:linear-gradient(135deg,rgba(26,26,26,0.92),rgba(44,44,44,0.85)),url('https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/10a5f5c0c-736b-4e25-85fb-db58e9bc77b2.png') center/cover;display:flex;align-items:center;padding:160px 20px 80px}
+.hero-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-text h1{font-size:3rem;color:var(--white);margin-bottom:20px;line-height:1.3}
+.hero-text h1 span{color:var(--gold)}
+.hero-text p{font-size:1.15rem;color:rgba(255,255,255,0.9);margin-bottom:25px}
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.badge{background:rgba(212,175,55,0.15);padding:10px 18px;border-radius:30px;color:var(--gold);border:1px solid rgba(212,175,55,0.3)}
+.hero-buttons{display:flex;gap:15px;flex-wrap:wrap}
+.btn{padding:15px 32px;border-radius:10px;font-weight:700;display:inline-flex;align-items:center;gap:10px;font-size:1rem;border:none;cursor:pointer;font-family:inherit;transition:all .3s}
+.btn-primary{background:var(--gold);color:var(--black)}
+.btn-primary:hover{background:var(--gold-dark);transform:translateY(-3px)}
+.btn-whatsapp{background:var(--whatsapp);color:var(--white)}
+.btn-whatsapp:hover{background:var(--whatsapp-dark);transform:translateY(-3px)}
+.hero-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border-radius:25px;padding:30px;border:1px solid rgba(212,175,55,0.3);color:var(--white)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat-item{text-align:center;padding:20px;background:rgba(212,175,55,0.1);border-radius:15px;border:1px solid rgba(212,175,55,0.2)}
+.stat-number{font-size:2rem;font-weight:800;color:var(--gold);display:block}
+.stat-label{font-size:.9rem;color:var(--white)}
+
+/* Sections */
+section{padding:80px 20px}
+.container{max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:60px}
+.section-tag{display:inline-block;background:rgba(212,175,55,0.15);color:var(--gold-dark);padding:8px 20px;border-radius:30px;font-weight:700;margin-bottom:15px;border:1px solid rgba(212,175,55,0.3)}
+.section-header h2{font-size:2.5rem;margin-bottom:15px}
+.section-header p{color:var(--gray);font-size:1.1rem;max-width:700px;margin:0 auto}
+
+/* About */
+.about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.about-text h3{font-size:1.8rem;margin-bottom:20px;position:relative;padding-bottom:15px}
+.about-text h3::after{content:'';position:absolute;bottom:0;right:0;width:60px;height:3px;background:var(--gold)}
+.about-text p{color:var(--gray);margin-bottom:18px;font-size:1.05rem}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.about-feature{background:var(--gray-light);padding:20px;border-radius:15px;border-right:3px solid var(--gold)}
+.about-feature-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.4rem;margin-bottom:12px}
+.about-feature h4{margin-bottom:6px;font-size:1.05rem}
+.about-feature p{color:var(--gray);font-size:.9rem;margin:0}
+.about-image{border-radius:20px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.15);border:3px solid var(--gold)}
+
+/* Services */
+.services{background:var(--gray-light)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+.service-card{background:var(--white);padding:35px 25px;border-radius:20px;text-align:center;transition:all .4s;border:1px solid #eee}
+.service-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,0.1)}
+.service-icon{width:80px;height:80px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2.2rem;color:var(--white)}
+.service-card h3{font-size:1.3rem;margin-bottom:12px}
+.service-card p{color:var(--gray)}
+
+/* Before/After */
+.before-after{background:var(--white)}
+.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:30px}
+.ba-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:all .4s;border:2px solid var(--gold)}
+.ba-card:hover{transform:translateY(-8px)}
+.ba-slider{position:relative;height:320px;overflow:hidden;cursor:col-resize}
+.ba-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.ba-before{clip-path:inset(0 50% 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:4px;background:var(--gold);transform:translateX(-50%);z-index:5}
+.ba-handle::before{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--gold);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--black);border:3px solid var(--white)}
+.ba-label{position:absolute;top:15px;padding:8px 18px;border-radius:30px;font-weight:700;font-size:.9rem;z-index:3;color:var(--white)}
+.ba-label-before{right:15px;background:var(--black);border:2px solid var(--gold)}
+.ba-label-after{left:15px;background:var(--gold);color:var(--black)}
+.ba-info{padding:20px;text-align:center;background:var(--gray-light)}
+.ba-info h4{font-size:1.2rem;margin-bottom:5px}
+.ba-info p{color:var(--gray);font-size:.9rem}
+
+/* Brands */
+.brands{background:var(--white)}
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.brand-card{background:var(--white);border:2px solid #eee;border-radius:15px;padding:20px 15px;text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer}
+.brand-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 15px 30px rgba(212,175,55,0.2)}
+.brand-letter{width:60px;height:60px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--black);font-size:1.6rem;font-weight:800;border:3px solid var(--white)}
+.brand-card h3{font-size:1rem;font-weight:700}
+.brand-card .brand-en{font-size:.8rem;color:var(--gold-dark);font-weight:600}
+.brand-card .brand-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.brand-tag{background:rgba(212,175,55,0.1);color:var(--gold-dark);padding:3px 8px;border-radius:10px;font-size:.7rem;font-weight:600;border:1px solid rgba(212,175,55,0.2)}
+.brands-more{text-align:center;margin-top:40px}
+.brands-more p{color:var(--gray);margin-bottom:20px}
+
+/* Why Us */
+.why-us{background:linear-gradient(135deg,var(--black),var(--black-light));color:var(--white);position:relative;overflow:hidden}
+.why-us .section-header h2{color:var(--white)}
+.why-us .section-header p{color:rgba(255,255,255,0.85)}
+.why-us .section-tag{background:rgba(212,175,55,0.2);color:var(--gold);border-color:var(--gold)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+.why-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);padding:30px 25px;border-radius:20px;border:1px solid rgba(212,175,55,0.3);text-align:center;transition:all .4s}
+.why-card:hover{background:rgba(212,175,55,0.1);transform:translateY(-8px);border-color:var(--gold)}
+.why-icon{width:70px;height:70px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.8rem;color:var(--black)}
+.why-card h3{font-size:1.2rem;margin-bottom:10px;color:var(--gold)}
+.why-card p{font-size:.95rem;opacity:.9}
+
+/* Warranty Banner */
+.warranty-banner{background:linear-gradient(90deg,var(--gold),var(--gold-dark));padding:40px 20px;color:var(--black)}
+.warranty-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.warranty-text h3{font-size:1.6rem;margin-bottom:8px}
+.warranty-text p{font-size:1.05rem;opacity:.9}
+.warranty-icon{font-size:4rem;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* FAQ */
+.faq{background:var(--gray-light)}
+.faq-list{max-width:900px;margin:0 auto}
+.faq-item{background:var(--white);border-radius:15px;margin-bottom:15px;overflow:hidden;border:1px solid #eee}
+.faq-question{width:100%;padding:20px 25px;background:none;border:none;display:flex;justify-content:space-between;align-items:center;font-size:1.1rem;font-weight:700;text-align:right;cursor:pointer;font-family:inherit}
+.faq-icon{width:32px;height:32px;background:var(--gold);color:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;transition:transform .3s}
+.faq-item.active .faq-icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s;padding:0 25px;color:var(--gray)}
+.faq-item.active .faq-answer{max-height:400px;padding:0 25px 20px}
+
+/* Contact */
+.contact{background:var(--gray-light)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-info{background:var(--white);padding:40px;border-radius:20px;border:1px solid rgba(212,175,55,0.2)}
+.contact-info h3{font-size:1.8rem;margin-bottom:25px}
+.contact-item{display:flex;gap:15px;margin-bottom:22px}
+.contact-icon{width:55px;height:55px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:15px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.4rem;flex-shrink:0}
+.contact-details h4{margin-bottom:5px}
+.contact-details p{color:var(--gray)}
+.whatsapp-box,.hotline-box{padding:25px;border-radius:20px;text-align:center;margin-top:18px;display:block;transition:all .3s}
+.whatsapp-box{background:linear-gradient(135deg,var(--whatsapp),var(--whatsapp-dark));color:var(--white);border:2px solid var(--white)}
+.hotline-box{background:linear-gradient(135deg,var(--black),#2c2c2c);color:var(--gold);border:2px solid var(--gold)}
+.whatsapp-box .wa-number,.hotline-box .number{font-size:2rem;font-weight:800;display:block;margin:8px 0;direction:ltr}
+.contact-form{background:var(--white);padding:40px;border-radius:20px;border:1px solid rgba(212,175,55,0.2)}
+.contact-form h3{font-size:1.8rem;margin-bottom:20px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;margin-bottom:8px;font-weight:600}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border:2px solid #eee;border-radius:12px;font-family:inherit;font-size:1rem}
+.form-group textarea{resize:vertical;min-height:110px}
+
+/* Policy Sections */
+.policy-section{background:var(--white)}
+.policy-content{max-width:900px;margin:0 auto;background:var(--gray-light);padding:50px;border-radius:20px;border:1px solid rgba(212,175,55,0.2)}
+.policy-content h3{color:var(--gold-dark);margin:28px 0 15px;font-size:1.35rem;padding-bottom:10px;border-bottom:2px solid rgba(212,175,55,0.2)}
+.policy-content h3:first-child{margin-top:0}
+.policy-content p,.policy-content li{margin-bottom:12px;line-height:1.9}
+.policy-content ul{padding-right:25px;margin-bottom:15px}
+.policy-update{background:rgba(212,175,55,0.1);padding:15px 20px;border-radius:10px;margin-top:25px;font-size:.9rem;color:var(--gray);border-right:3px solid var(--gold)}
+
+/* Disclaimer */
+.disclaimer{background:rgba(212,175,55,0.08);border-right:5px solid var(--gold);padding:30px;border-radius:15px;margin:40px auto;max-width:1000px}
+.disclaimer h4{color:var(--gold-dark);margin-bottom:15px;font-size:1.25rem}
+.disclaimer p{line-height:1.9;margin-bottom:12px}
+.disclaimer ul{padding-right:25px;margin-top:10px}
+.disclaimer li{margin-bottom:8px}
+
+/* Footer */
+footer{background:var(--black);color:rgba(255,255,255,0.8);padding:60px 20px 20px}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-col h4{color:var(--gold);margin-bottom:20px}
+.footer-col a{color:rgba(255,255,255,0.7);display:block;line-height:2;transition:color .3s}
+.footer-col a:hover{color:var(--gold)}
+.footer-legal{background:rgba(212,175,55,0.1);padding:18px;border-radius:10px;margin-top:20px;font-size:.85rem;line-height:1.9;border:1px solid rgba(212,175,55,0.3)}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:25px;border-top:1px solid rgba(212,175,55,0.2);text-align:center;font-size:.9rem;color:rgba(255,255,255,0.6)}
+
+/* ============ Brand Modal (Full Page Tab) ============ */
+.modal{display:none;position:fixed;inset:0;background:var(--white);z-index:3000;overflow-y:auto}
+.modal.active{display:block}
+
+/* Sticky Hotline Bar for Brand Pages */
+.brand-sticky-bar{
+  position:sticky;
+  top:0;
+  z-index:3100;
+  background:linear-gradient(90deg,var(--gold),var(--gold-dark));
+  padding:12px 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  box-shadow:0 4px 20px rgba(0,0,0,0.15);
+  border-bottom:3px solid var(--black);
+}
+.brand-sticky-bar .bar-title{
+  color:var(--black);
+  font-weight:800;
+  font-size:1rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.brand-sticky-bar .bar-title .pulse-dot{
+  width:10px;height:10px;
+  background:var(--black);
+  border-radius:50%;
+  animation:pulseDot 1.5s ease-in-out infinite;
+}
+@keyframes pulseDot{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.3);opacity:.6}
+}
+.brand-sticky-bar a{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 20px;
+  border-radius:50px;
+  font-weight:700;
+  transition:all .3s;
+  font-size:.95rem;
+}
+.brand-sticky-bar .bar-hotline{
+  background:var(--black);
+  color:var(--gold);
+  border:2px solid var(--black);
+}
+.brand-sticky-bar .bar-hotline:hover{
+  background:var(--black-light);
+  transform:translateY(-2px);
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+.brand-sticky-bar .bar-whatsapp{
+  background:var(--whatsapp);
+  color:var(--white);
+  border:2px solid var(--whatsapp-dark);
+}
+.brand-sticky-bar .bar-whatsapp:hover{
+  background:var(--whatsapp-dark);
+  transform:translateY(-2px);
+  box-shadow:0 5px 15px rgba(37,211,102,0.4);
+}
+.brand-sticky-bar .bar-number{
+  font-size:1.2rem;
+  font-weight:800;
+  direction:ltr;
+  display:inline-block;
+}
+.brand-sticky-bar .bar-icon{
+  font-size:1.3rem;
+}
+
+/* Brand Modal Header */
+.modal-header{
+  background:linear-gradient(135deg,var(--black),var(--black-light));
+  padding:60px 20px 60px;
+  color:var(--white);
+  text-align:center;
+  position:relative;
+  border-bottom:4px solid var(--gold);
+}
+.modal-header::before{
+  content:'';position:absolute;inset:0;
+  background:url('https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/10a5f5c0c-736b-4e25-85fb-db58e9bc77b2.png') center/cover;
+  opacity:0.15;
+}
+.modal-close{
+  position:fixed;top:60px;left:20px;
+  width:50px;height:50px;border-radius:50%;
+  background:var(--gold);color:var(--black);
+  border:none;font-size:1.8rem;font-weight:700;
+  cursor:pointer;z-index:3200;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+  transition:all .3s;
+}
+.modal-close:hover{background:var(--white);transform:rotate(90deg)}
+.modal-header-inner{position:relative;z-index:2;max-width:1000px;margin:0 auto}
+.modal-breadcrumb{display:flex;justify-content:center;gap:10px;margin-bottom:20px;font-size:.95rem;flex-wrap:wrap}
+.modal-breadcrumb a{color:var(--gold)}
+.modal-breadcrumb span{color:rgba(255,255,255,0.6)}
+.modal-brand-logo{
+  width:110px;height:110px;margin:0 auto 20px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--black);font-size:3rem;font-weight:800;
+  border:5px solid var(--white);
+  box-shadow:0 15px 40px rgba(212,175,55,0.4);
+}
+.modal-brand-image{
+  width:300px;max-width:100%;height:200px;
+  margin:0 auto 20px;border-radius:20px;
+  overflow:hidden;border:4px solid var(--gold);
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+.modal-brand-image img{width:100%;height:100%;object-fit:cover}
+.modal-header h2{font-size:2.5rem;margin-bottom:10px}
+.modal-header h2 span{color:var(--gold)}
+.modal-subtitle{color:var(--gold);font-size:1.3rem;margin-bottom:15px;font-weight:600}
+.modal-lead{font-size:1.1rem;color:rgba(255,255,255,0.9);max-width:800px;margin:0 auto 25px}
+.modal-badges{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}
+
+/* Big Contact Section in Brand Hero */
+.brand-hero-contact{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  padding:30px 20px;
+  border-top:3px solid var(--black);
+  border-bottom:3px solid var(--black);
+}
+.brand-hero-contact-inner{
+  max-width:1000px;margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.brand-contact-card{
+  padding:25px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  transition:all .3s;
+  text-align:right;
+}
+.brand-contact-card.hotline-card{
+  background:var(--black);
+  color:var(--gold);
+  border:3px solid var(--gold);
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+.brand-contact-card.hotline-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+.brand-contact-card.whatsapp-card{
+  background:var(--whatsapp);
+  color:var(--white);
+  border:3px solid var(--whatsapp-dark);
+  box-shadow:0 10px 30px rgba(37,211,102,0.4);
+}
+.brand-contact-card.whatsapp-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 40px rgba(37,211,102,0.5);
+}
+.brand-contact-card .card-icon{
+  width:70px;height:70px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;
+  flex-shrink:0;
+}
+.brand-contact-card.hotline-card .card-icon{
+  background:var(--gold);
+  color:var(--black);
+}
+.brand-contact-card.whatsapp-card .card-icon{
+  background:var(--white);
+  color:var(--whatsapp);
+}
+.brand-contact-card .card-text{flex:1}
+.brand-contact-card .card-label{
+  font-size:.95rem;
+  opacity:.9;
+  margin-bottom:5px;
+  font-weight:500;
+}
+.brand-contact-card .card-number{
+  font-size:2rem;
+  font-weight:800;
+  direction:ltr;
+  display:inline-block;
+  letter-spacing:1px;
+}
+.brand-contact-card .card-subtext{
+  font-size:.85rem;
+  opacity:.85;
+  margin-top:5px;
+}
+
+.modal-body{padding:50px 20px;max-width:1100px;margin:0 auto}
+.modal-section{margin-bottom:40px}
+.modal-section h3{
+  color:var(--gold-dark);font-size:1.5rem;
+  margin-bottom:20px;padding-bottom:12px;
+  border-bottom:3px solid rgba(212,175,55,0.2);
+  display:flex;align-items:center;gap:10px;
+}
+.modal-section p{margin-bottom:12px;font-size:1.05rem}
+.modal-section ul{padding-right:25px;margin-bottom:15px}
+.modal-section li{margin-bottom:10px;font-size:1.02rem}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.info-card{background:var(--gray-light);padding:25px;border-radius:15px;border:1px solid #eee}
+.info-card h4{color:var(--gold-dark);font-size:1.15rem;margin-bottom:12px}
+.info-card ul{padding-right:20px}
+.info-card li{margin-bottom:8px}
+
+.independence-notice{
+  background:rgba(212,175,55,0.08);
+  border:2px solid var(--gold);
+  border-right:6px solid var(--gold);
+  padding:30px;border-radius:15px;margin:30px 0;
+}
+.independence-notice h4{color:var(--gold-dark);margin-bottom:15px;font-size:1.3rem}
+.independence-notice p{margin-bottom:12px}
+.independence-notice ul{padding-right:25px;margin-top:10px}
+.independence-notice li{margin-bottom:10px}
+
+.modal-cta-bottom{
+  background:linear-gradient(135deg,var(--black),var(--black-light));
+  padding:40px 20px;border-radius:20px;
+  text-align:center;color:var(--white);
+  margin-top:40px;border:3px solid var(--gold);
+}
+.modal-cta-bottom h3{color:var(--gold);font-size:1.6rem;margin-bottom:10px;border:none;padding:0}
+.modal-cta-bottom p{color:rgba(255,255,255,0.9);margin-bottom:25px}
+.modal-cta-buttons{display:grid;grid-template-columns:1fr 1fr;gap:15px;max-width:700px;margin:0 auto}
+.modal-cta-buttons .btn{justify-content:center;width:100%;padding:18px}
+
+/* Floating WhatsApp */
+.float-whatsapp{position:fixed;bottom:30px;left:30px;background:var(--whatsapp);color:var(--white);padding:14px 25px;border-radius:50px;display:flex;align-items:center;gap:12px;font-weight:700;box-shadow:0 10px 30px rgba(37,211,102,0.5);z-index:999}
+.float-whatsapp svg{width:28px;height:28px;fill:var(--white)}
+
+@media (max-width:900px){
+  .top-contact-bar{gap:15px;font-size:.85rem;padding:8px 15px}
+  .hero-content,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-text h1{font-size:2rem}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{position:fixed;top:115px;right:-100%;background:var(--white);flex-direction:column;width:80%;padding:30px;transition:right .3s}
+  .nav-links.active{right:0}
+  .menu-toggle{display:block}
+  .nav-cta{display:none}
+  .float-whatsapp span{display:none}
+  .float-whatsapp{padding:15px;border-radius:50%}
+  .brands-grid{grid-template-columns:repeat(2,1fr)}
+  .modal-cta-buttons,.info-grid,.brand-hero-contact-inner{grid-template-columns:1fr}
+  .modal-header{padding:50px 20px 50px}
+  .modal-header h2{font-size:1.8rem}
+  .modal-close{top:55px;left:15px;width:45px;height:45px;font-size:1.5rem}
+  .modal-brand-logo{width:90px;height:90px;font-size:2.5rem}
+  .modal-brand-image{width:250px;height:170px}
+  .brand-sticky-bar{padding:10px 15px;gap:10px}
+  .brand-sticky-bar .bar-title{font-size:.85rem;width:100%;justify-content:center}
+  .brand-sticky-bar a{padding:8px 15px;font-size:.85rem}
+  .brand-sticky-bar .bar-number{font-size:1rem}
+  .brand-contact-card{padding:20px;gap:15px}
+  .brand-contact-card .card-icon{width:55px;height:55px;font-size:1.5rem}
+  .brand-contact-card .card-number{font-size:1.5rem}
+}
+@media (max-width:600px){
+  .top-contact-bar{flex-direction:column;gap:5px;padding:6px 10px}
+  .navbar{top:75px}
+  .hero{padding-top:180px}
+  .brand-sticky-bar{flex-direction:column;gap:8px}
+  .brand-sticky-bar a{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Top Contact Bar - Always Visible -->
+<div class="top-contact-bar">
+  <a href="tel:19387" class="hotline-link">
+    <span>📞</span>
+    <span>الخط الساخن: 19387</span>
+  </a>
+  <span class="separator">|</span>
+  <a href="https://wa.me/201102670999" target="_blank" class="whatsapp-link">
+    <span>💬</span>
+    <span>واتساب: 01102670999</span>
+  </a>
+</div>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#home" class="logo">
+      <div class="logo-icon">🔧</div>
+      <span>HomeTech Service</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#gallery">قبل وبعد</a></li>
+      <li><a href="#brands">الماركات</a></li>
+      <li><a href="#faq">الأسئلة</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+    <a href="https://wa.me/201102670999" target="_blank" class="nav-cta">💬 واتساب</a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div data-aos="fade-left">
+      <h1>مركز صيانة وإصلاح <span>الأجهزة المنزلية</span></h1>
+      <p>HomeTech Service مركز متخصص في صيانة وإصلاح الأجهزة المنزلية، نعمل بسجل تجاري مرخص في نطاق محافظة الجيزة.</p>
+      <div class="hero-badges">
+        <div class="badge">✓ سجل تجاري 321507</div>
+        <div class="badge">✓ ضمان على الأعمال</div>
+        <div class="badge">✓ خدمة ميدانية</div>
+      </div>
+      <div class="hero-buttons">
+        <a href="https://wa.me/201102670999" target="_blank" class="btn btn-whatsapp">💬 تواصل عبر الواتساب</a>
+        <a href="tel:19387" class="btn btn-primary">📞 الخط الساخن: 19387</a>
+      </div>
+    </div>
+    <div data-aos="fade-right">
+      <div class="hero-card">
+        <div class="stat-grid">
+          <div class="stat-item"><span class="stat-number">+10</span><span class="stat-label">سنوات خبرة</span></div>
+          <div class="stat-item"><span class="stat-number">+20</span><span class="stat-label">نوع جهاز</span></div>
+          <div class="stat-item"><span class="stat-number">6-12</span><span class="stat-label">شهر ضمان</span></div>
+          <div class="stat-item"><span class="stat-number">جيزة</span><span class="stat-label">نطاق التغطية</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">من نحن</span>
+      <h2>نبذة عن HomeTech Service</h2>
+      <p>مركز صيانة مستقل يعمل بخبرة والتزام في خدمة الأجهزة المنزلية</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text" data-aos="fade-left">
+        <h3>خبرة ميدانية والتزام بالخدمة</h3>
+        <p>مركز <strong>HomeTech Service</strong> هو مركز صيانة وإصلاح متخصص في الأجهزة المنزلية، يقع في العمرانية بمحافظة الجيزة. نعمل في هذا المجال منذ سنوات، وقد بنينا سمعتنا على أساس الالتزام بالمواعيد، والشفافية في التعامل، والجودة في التنفيذ.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">🔍</div>
+            <h4>تشخيص دقيق</h4>
+            <p>فحص شامل للجهاز قبل تحديد العطل والتكلفة</p>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">💼</div>
+            <h4>شفافية كاملة</h4>
+            <p>إعلام العميل بالتكلفة قبل البدء في الإصلاح</p>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🛡️</div>
+            <h4>ضمان موثق</h4>
+            <p>ضمان على الأعمال المنفذة حسب نوع الخدمة</p>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">📋</div>
+            <h4>عمل مرخص</h4>
+            <p>سجل تجاري رقم 321507</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-image" data-aos="fade-right">
+        <img src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/10a5f5c0c-736b-4e25-85fb-db58e9bc77b2.png" alt="فريق عمل HomeTech Service">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">خدماتنا</span>
+      <h2>خدمات الصيانة والإصلاح</h2>
+      <p>نقدم خدمات صيانة لمجموعة متنوعة من الأجهزة المنزلية</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-aos="fade-up"><div class="service-icon">🧺</div><h3>صيانة الغسالات</h3><p>إصلاح وصيانة الغسالات بأنواعها المختلفة</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100"><div class="service-icon">❄️</div><h3>إصلاح الثلاجات</h3><p>تشخيص أعطال التبريد واستبدال القطع التالفة</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200"><div class="service-icon">🔥</div><h3>صيانة الأفران</h3><p>إصلاح أعطال الشعلات والتحكم في الحرارة</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="300"><div class="service-icon">🌬️</div><h3>صيانة المكيفات</h3><p>تنظيف وصيانة المكيفات بأنواعها</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="400"><div class="service-icon">🍽️</div><h3>غسالات الأطباق</h3><p>فحص وإصلاح أعطال غسالات الأطباق</p></div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="500"><div class="service-icon">⚡</div><h3>أجهزة أخرى</h3><p>صيانة السخانات والميكروويف وغيرها</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Before/After -->
+<section class="before-after" id="gallery">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">نماذج من أعمالنا</span>
+      <h2>قبل وبعد التجديد</h2>
+      <p>اسحب المؤشر لرؤية الفرق بين قبل وبعد الصيانة</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card" data-aos="zoom-in">
+        <div class="ba-slider" data-slider>
+          <img class="ba-img ba-before" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/13bb47802-32ae-4a37-a955-0e7dfe4303b7.png" alt="قبل">
+          <img class="ba-img" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/10a5f5c0c-736b-4e25-85fb-db58e9bc77b2.png" alt="بعد">
+          <div class="ba-handle"></div>
+          <span class="ba-label ba-label-before">قبل</span>
+          <span class="ba-label ba-label-after">بعد</span>
+        </div>
+        <div class="ba-info"><h4>غسالة منزلية</h4><p>تنظيف وتلميع واستبدال قطع تالفة</p></div>
+      </div>
+      <div class="ba-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="ba-slider" data-slider>
+          <img class="ba-img ba-before" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/1580bff4b-000f-4066-89d8-78293ceb65ff.png" alt="قبل">
+          <img class="ba-img" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/1fed32c25-0f7a-4d31-92c7-504b38d20857.png" alt="بعد">
+          <div class="ba-handle"></div>
+          <span class="ba-label ba-label-before">قبل</span>
+          <span class="ba-label ba-label-after">بعد</span>
+        </div>
+        <div class="ba-info"><h4>ثلاجة وفريزر</h4><p>إصلاح عطل تبريد واستبدال قطع</p></div>
+      </div>
+      <div class="ba-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="ba-slider" data-slider>
+          <img class="ba-img ba-before" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/1df395971-c441-49aa-b31b-e037b6615c18.png" alt="قبل">
+          <img class="ba-img" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/1c099c494-350b-47c1-bfec-d4b6054ebc3f.png" alt="بعد">
+          <div class="ba-handle"></div>
+          <span class="ba-label ba-label-before">قبل</span>
+          <span class="ba-label ba-label-after">بعد</span>
+        </div>
+        <div class="ba-info"><h4>بوتاجاز وفرن</h4><p>تنظيف عميق واستبدال شعلات</p></div>
+      </div>
+      <div class="ba-card" data-aos="zoom-in" data-aos-delay="300">
+        <div class="ba-slider" data-slider>
+          <img class="ba-img ba-before" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/106dffdb9-ee36-445c-834b-f34ebb8a08ad.png" alt="قبل">
+          <img class="ba-img" src="https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/198364151-0666-47ad-bd03-f3e6096748f2.png" alt="بعد">
+          <div class="ba-handle"></div>
+          <span class="ba-label ba-label-before">قبل</span>
+          <span class="ba-label ba-label-after">بعد</span>
+        </div>
+        <div class="ba-info"><h4>مكيف هواء</h4><p>تنظيف شامل وصيانة دورية</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brands -->
+<section class="brands" id="brands">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">الماركات التي نصلحها</span>
+      <h2>صيانة أجهزة جميع الماركات</h2>
+      <p>اختر ماركة جهازك لفتح صفحة مستقلة بتفاصيل الخدمة</p>
+    </div>
+    <div class="brands-grid" id="brandsGrid"></div>
+    <div class="brands-more" data-aos="fade-up">
+      <p>لم تجد ماركة جهازك؟ تواصل معنا!</p>
+      <a href="https://wa.me/201102670999" target="_blank" class="btn btn-whatsapp">💬 تواصل معنا للاستفسار</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Us -->
+<section class="why-us" id="why">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">لماذا HomeTech Service</span>
+      <h2>ما يميزنا في العمل</h2>
+      <p>نلتزم بمعايير واضحة في تقديم الخدمة</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card" data-aos="fade-up"><div class="why-icon">🏆</div><h3>خبرة ميدانية</h3><p>نعمل في مجال صيانة الأجهزة المنزلية منذ سنوات</p></div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="100"><div class="why-icon">🛡️</div><h3>ضمان موثق</h3><p>ضمان يتراوح بين 6 أشهر وعام كامل</p></div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="200"><div class="why-icon">🔧</div><h3>تشخيص دقيق</h3><p>فحص الجهاز بدقة قبل اقتراح الحل</p></div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="300"><div class="why-icon">💰</div><h3>شفافية في التسعير</h3><p>إخطار العميل بالتكلفة قبل البدء</p></div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="400"><div class="why-icon">⚡</div><h3>استجابة سريعة</h3><p>الرد على طلبات الخدمة في أسرع وقت</p></div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="500"><div class="why-icon">📋</div><h3>عمل مرخص</h3><p>سجل تجاري رقم 321507</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Warranty Banner -->
+<section class="warranty-banner">
+  <div class="warranty-content">
+    <div class="warranty-text">
+      <h3>🛡️ ضمان على الأعمال المنفذة</h3>
+      <p>نقدم ضماناً يتراوح بين 6 أشهر وعام كامل حسب نوع العطل وقطع الغيار</p>
+    </div>
+    <div class="warranty-icon">🔒</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">الأسئلة الشائعة</span>
+      <h2>إجابات لأكثر الأسئلة شيوعاً</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question"><span>كيف يمكنني طلب خدمة صيانة؟</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>عبر الاتصال بالخط الساخن 19387 أو الواتساب 01102670999 أو تعبئة نموذج الموقع.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>هل تقدمون ضماناً؟</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>نعم، ضمان يتراوح بين 6 أشهر وعام حسب نوع العطل وقطع الغيار.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>كيف يتم تحديد الأسعار؟</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>بعد معاينة الجهاز وتشخيص العطل، يتم إخطار العميل بالتكلفة قبل البدء.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>ما المناطق التي تغطيها خدمتكم؟</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>نقع في العمرانية بالجيزة ونخدم نطاق المحافظة والمناطق المجاورة.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>هل أنتم مركز معتمد من الماركات؟</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>لا، نحن مركز صيانة مستقل تماماً، وليس لنا أي علاقة بالعلامات التجارية المذكورة.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">تواصل معنا</span>
+      <h2>نحن هنا لخدمتك</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info" data-aos="fade-left">
+        <h3>معلومات التواصل</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-details"><h4>الخط الساخن</h4><p><a href="tel:19387" style="color:var(--gold-dark);font-size:1.3rem;font-weight:700">19387</a></p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-details"><h4>واتساب</h4><p><a href="https://wa.me/201102670999" target="_blank" style="color:var(--whatsapp-dark);font-size:1.2rem;font-weight:700;direction:ltr;display:inline-block">01102670999</a></p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-details"><h4>العنوان</h4><p>العمرانية، الجيزة، مصر</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-details"><h4>ساعات العمل</h4><p>يومياً 9ص - 11م</p></div>
+        </div>
+        <a href="https://wa.me/201102670999" target="_blank" class="whatsapp-box">
+          <div style="font-size:2.5rem;margin-bottom:8px">💬</div>
+          <div style="font-size:1.2rem;font-weight:700;margin-bottom:6px">تواصل مع خدمة العملاء</div>
+          <span class="wa-number">01102670999</span>
+        </a>
+        <a href="tel:19387" class="hotline-box">
+          <div>📞 أو اتصل بالخط الساخن</div>
+          <span class="number">19387</span>
+        </a>
+      </div>
+      <div class="contact-form" data-aos="fade-right">
+        <h3>أرسل طلب صيانة</h3>
+        <form id="maintenanceForm">
+          <div class="form-group"><label>الاسم الكامل *</label><input type="text" id="custName" required placeholder="أدخل اسمك"></div>
+          <div class="form-group"><label>رقم الهاتف *</label><input type="tel" id="custPhone" required placeholder="01xxxxxxxxx"></div>
+          <div class="form-group"><label>العنوان *</label><input type="text" id="custAddress" required placeholder="العنوان بالتفصيل"></div>
+          <div class="form-group"><label>نوع الجهاز *</label>
+            <select id="deviceType" required>
+              <option value="">اختر نوع الجهاز</option>
+              <option>غسالة</option><option>ثلاجة</option><option>بوتاجاز</option><option>مكيف</option><option>أخرى</option>
+            </select>
+          </div>
+          <div class="form-group"><label>وصف العطل *</label><textarea id="deviceIssue" required placeholder="اشرح المشكلة..."></textarea></div>
+          <button type="submit" class="btn btn-whatsapp" style="width:100%;justify-content:center">💬 إرسال عبر الواتساب</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Privacy Policy -->
+<section class="policy-section" id="privacy">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">سياسة الخصوصية</span>
+      <h2>كيف نحمي بياناتك</h2>
+    </div>
+    <div class="policy-content" data-aos="fade-up">
+      <h3>📌 المعلومات التي نجمعها</h3>
+      <ul>
+        <li>معلومات التواصل: الاسم، رقم الهاتف، والعنوان</li>
+        <li>معلومات الجهاز: النوع، الماركة، وصف العطل</li>
+      </ul>
+      <h3>📌 كيفية استخدام المعلومات</h3>
+      <ul>
+        <li>التواصل معك لترتيب موعد الصيانة</li>
+        <li>تقديم خدمة الصيانة والإصلاح</li>
+        <li>تحسين خدماتنا</li>
+      </ul>
+      <h3>📌 حقوقك</h3>
+      <ul>
+        <li>طلب الاطلاع على بياناتك</li>
+        <li>طلب تصحيح أو حذف بياناتك</li>
+      </ul>
+      <div class="policy-update"><strong>آخر تحديث:</strong> يوليو 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- Terms -->
+<section class="policy-section" id="terms" style="background:var(--gray-light)">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">الشروط والأحكام</span>
+      <h2>شروط استخدام الخدمة</h2>
+    </div>
+    <div class="policy-content" data-aos="fade-up">
+      <h3>📌 وصف الخدمة</h3>
+      <p>مركز HomeTech Service هو مركز صيانة وإصلاح <strong>مستقل</strong> متخصص في الأجهزة المنزلية.</p>
+      <h3>📌 الاستقلالية</h3>
+      <ul>
+        <li>مركز صيانة مستقل تماماً وليس تابعاً لأي علامة تجارية</li>
+        <li>لا تربطه أي علاقة مع الشركات المصنعة</li>
+        <li>ذكر الماركات يهدف فقط لتوضيح أنواع الأجهزة</li>
+      </ul>
+      <h3>📌 التشخيص والتسعير</h3>
+      <ul>
+        <li>يتم إخطار العميل بالتكلفة قبل البدء</li>
+        <li>لا يتم التنفيذ إلا بعد موافقة العميل</li>
+      </ul>
+      <div class="policy-update"><strong>آخر تحديث:</strong> يوليو 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- Warranty Policy -->
+<section class="policy-section" id="warranty">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-tag">سياسة الضمان</span>
+      <h2>شروط وأحكام الضمان</h2>
+    </div>
+    <div class="policy-content" data-aos="fade-up">
+      <h3>📌 نطاق الضمان</h3>
+      <ul>
+        <li>مدة الضمان: 6 أشهر إلى عام حسب نوع العطل</li>
+        <li>يشمل تكرار نفس العطل أو عيب في قطعة الغيار</li>
+      </ul>
+      <h3>📌 ما لا يشمله الضمان</h3>
+      <ul>
+        <li>الأعطال الناتجة عن سوء الاستخدام</li>
+        <li>تدخل طرف ثالث في الجهاز</li>
+        <li>القطع الاستهلاكية</li>
+      </ul>
+      <div class="policy-update"><strong>ملاحظة:</strong> يحتفظ المركز بحق تقييم كل حالة</div>
+    </div>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<div class="disclaimer" data-aos="fade-up">
+  <h4>⚠️ تنويه قانوني هام</h4>
+  <p>مركز <strong>HomeTech Service</strong> هو مزود خدمة صيانة وإصلاح مستقل تماماً، ولا تربطه أي علاقة تجارية أو وكالة أو اعتماد بأي من الشركات المصنعة.</p>
+  <ul>
+    <li>جميع العلامات التجارية ملك لأصحابها الشرعيين</li>
+    <li>المركز يعمل بشكل مستقل بسجل تجاري رقم 321507</li>
+    <li>ذكر الماركات يهدف فقط لتوضيح أنواع الأجهزة</li>
+  </ul>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo" style="color:var(--gold);margin-bottom:20px"><div class="logo-icon">🔧</div><span>HomeTech Service</span></div>
+      <p>مركز صيانة مستقل متخصص في الأجهزة المنزلية</p>
+      <div class="footer-legal">
+        <strong style="color:var(--gold)">السجل التجاري:</strong> 321507<br>
+        <strong style="color:var(--gold)">الخط الساخن:</strong> <a href="tel:19387" style="color:var(--gold)">19387</a><br>
+        <strong style="color:var(--gold)">واتساب:</strong> <a href="https://wa.me/201102670999" style="color:var(--gold);direction:ltr;display:inline-block">01102670999</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>روابط سريعة</h4>
+      <a href="#home">الرئيسية</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#brands">الماركات</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+      <a href="#contact">تواصل معنا</a>
+    </div>
+    <div class="footer-col">
+      <h4>خدماتنا</h4>
+      <a href="#services">صيانة الغسالات</a>
+      <a href="#services">إصلاح الثلاجات</a>
+      <a href="#services">صيانة المكيفات</a>
+      <a href="#services">صيانة الأفران</a>
+    </div>
+    <div class="footer-col">
+      <h4>معلومات قانونية</h4>
+      <a href="#privacy">سياسة الخصوصية</a>
+      <a href="#terms">الشروط والأحكام</a>
+      <a href="#warranty">سياسة الضمان</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 HomeTech Service - سجل تجاري رقم 321507</p>
+    <p style="font-size:.85rem;margin-top:10px">تنويه: هذا المركز مستقل تماماً وليس له أي علاقة بأي علامة تجارية.</p>
+  </div>
+</footer>
+
+<!-- Brand Modal (Full Page Tab) -->
+<div class="modal" id="brandModal">
+  <button class="modal-close" onclick="closeBrand()" aria-label="إغلاق">×</button>
+  <div id="modalContent"></div>
+</div>
+
+<a href="https://wa.me/201102670999" target="_blank" class="float-whatsapp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>تواصل معنا</span>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+const brandsData = [
+  { slug: 'kiriazi', name: 'كريازي', nameEn: 'Kiriazi', letter: 'ك', image: 'https://i.postimg.cc/NFTKNFPK/Gemini-Generated-Image-mvt76amvt76amvt7.jpg', appliances: ['غسالات','ثلاجات','بوتاجازات'], issues: ['أعطال التبريد','مشاكل الغسالات','أعطال الشعلات'], overview: 'أجهزة كريازي من الأجهزة الشائعة في السوق المصري، واكتسب فنيونا خبرة واسعة في تشخيص وإصلاح مختلف أعطالها.' },
+  { slug: 'whitepoint', name: 'وايت بوينت', nameEn: 'White Point', letter: 'و', appliances: ['غسالات','ثلاجات','سخانات'], issues: ['أعطال الكمبريسور','مشاكل التحكم','أعطال المحركات'], overview: 'نمتلك خبرة في التعامل مع أجهزة وايت بوينت بمختلف موديلاتها.' },
+  { slug: 'whirlpool', name: 'وايت ويل', nameEn: 'Whirlpool', letter: 'و', appliances: ['غسالات','ثلاجات','غسالات أطباق'], issues: ['أعطال الأنظمة الإلكترونية','مشاكل الغسالات','أعطال التبريد'], overview: 'أجهزة وايت ويل تتميز بتقنيات متقدمة، وفنيونا مدربون على التعامل معها.' },
+  { slug: 'toshiba', name: 'توشيبا', nameEn: 'Toshiba', letter: 'ت', appliances: ['مكيفات','ثلاجات','غسالات'], issues: ['أعطال المكيفات','مشاكل التبريد','أعطال الميكروويف'], overview: 'نتعامل مع أجهزة توشيبا بمختلف أنواعها.' },
+  { slug: 'sharp', name: 'شارب', nameEn: 'Sharp', letter: 'ش', appliances: ['مكيفات','ثلاجات','ميكروويف'], issues: ['أعطال المكيفات','مشاكل التبريد','أعطال الميكروويف'], overview: 'نقدم خدمات صيانة شاملة لأجهزة شارب.' },
+  { slug: 'lg', name: 'إل جي', nameEn: 'LG', letter: 'L', appliances: ['غسالات','ثلاجات','مكيفات'], issues: ['أعطال الأنظمة الذكية','مشاكل المحركات','أعطال التبريد'], overview: 'أجهزة إل جي تتميز بتقنيات حديثة.' },
+  { slug: 'samsung', name: 'سامسونج', nameEn: 'Samsung', letter: 'س', appliances: ['غسالات','ثلاجات','مكيفات'], issues: ['أعطال الأنظمة الإلكترونية','مشاكل التبريد','أعطال المحركات'], overview: 'نتعامل مع أجهزة سامسونج بمختلف موديلاتها.' },
+  { slug: 'bosch', name: 'بوش', nameEn: 'Bosch', letter: 'ب', appliances: ['غسالات','أفران','ثلاجات'], issues: ['أعطال الأنظمة الإلكترونية','مشاكل المضخات','أعطال أنظمة الغسيل'], overview: 'أجهزة بوش معروفة بجودتها العالية.' },
+  { slug: 'fresh', name: 'فريش', nameEn: 'Fresh', letter: 'ف', appliances: ['غسالات','ثلاجات','بوتاجازات'], issues: ['أعطال الغسالات','مشاكل التبريد','أعطال الشعلات'], overview: 'نظراً لانتشار أجهزة فريش في مصر، اكتسب فنيونا خبرة واسعة.' },
+  { slug: 'unionaire', name: 'يونيون إير', nameEn: 'Unionaire', letter: 'ي', appliances: ['مكيفات','ثلاجات','غسالات'], issues: ['أعطال المكيفات','مشاكل التبريد','أعطال المحركات'], overview: 'يونيون إير من الماركات المعروفة في مجال المكيفات.' },
+  { slug: 'tornado', name: 'تورنيدو', nameEn: 'Tornado', letter: 'ت', appliances: ['غسالات','ثلاجات','بوتاجازات'], issues: ['أعطال الغسالات','مشاكل التبريد','أعطال الشعلات'], overview: 'نتعامل مع أجهزة تورنيدو بمختلف موديلاتها.' },
+  { slug: 'frigidaire', name: 'فريجدير', nameEn: 'Frigidaire', letter: 'ف', appliances: ['ثلاجات','فريزرات','غسالات'], issues: ['أعطال التبريد','مشاكل الكمبريسور','أعطال الأنظمة الإلكترونية'], overview: 'فريجدير من الماركات المعروفة في مجال التبريد.' },
+  { slug: 'hitachi', name: 'هيتاشي', nameEn: 'Hitachi', letter: 'ه', appliances: ['ثلاجات','مكيفات','غسالات'], issues: ['أعطال التبريد','مشاكل المكيفات','أعطال الأنظمة الإلكترونية'], overview: 'أجهزة هيتاشي تتميز بالجودة العالية.' },
+  { slug: 'panasonic', name: 'باناسونيك', nameEn: 'Panasonic', letter: 'ب', appliances: ['مكيفات','ميكروويف','غسالات'], issues: ['أعطال المكيفات','مشاكل الميكروويف','أعطال الأنظمة الإلكترونية'], overview: 'نتعامل مع أجهزة باناسونيك بمختلف أنواعها.' },
+  { slug: 'zanussi', name: 'زانوسي', nameEn: 'Zanussi', letter: 'ز', appliances: ['غسالات','أفران','ثلاجات'], issues: ['أعطال الغسالات','مشاكل الأفران','أعطال الأنظمة الإلكترونية'], overview: 'زانوسي من الماركات الأوروبية المعروفة.' },
+  { slug: 'ideal', name: 'ايديال', nameEn: 'Ideal', letter: 'ا', appliances: ['سخانات','بوتاجازات','أفران'], issues: ['أعطال السخانات','مشاكل الشعلات','أعطال الأنظمة الكهربائية'], overview: 'نتعامل مع أجهزة ايديال بمختلف أنواعها.' },
+  { slug: 'kelvinator', name: 'كلفينيتور', nameEn: 'Kelvinator', letter: 'ك', appliances: ['ثلاجات','فريزرات','مكيفات'], issues: ['أعطال التبريد','مشاكل الكمبريسور','أعطال المحركات'], overview: 'كلفينيتور من الماركات المعروفة في مجال التبريد.' },
+  { slug: 'ariston', name: 'اريستون', nameEn: 'Ariston', letter: 'ا', appliances: ['غسالات','سخانات','أفران'], issues: ['أعطال الغسالات','مشاكل السخانات','أعطال الأفران'], overview: 'اريستون من الماركات الأوروبية المعروفة بجودة أجهزتها.' },
+  { slug: 'indesit', name: 'اندست', nameEn: 'Indesit', letter: 'ن', appliances: ['غسالات','أفران','ثلاجات'], issues: ['أعطال الغسالات','مشاكل الأفران','أعطال التبريد'], overview: 'اندست من الماركات الأوروبية المنتشرة في السوق المصري.' },
+  { slug: 'daewoo', name: 'دايو', nameEn: 'Daewoo', letter: 'د', appliances: ['غسالات','ثلاجات','مكيفات'], issues: ['أعطال الغسالات','مشاكل التبريد','أعطال المكيفات'], overview: 'دايو من الماركات المعروفة في السوق المصري.' },
+  { slug: 'electrostar', name: 'الكتروستار', nameEn: 'Electrostar', letter: 'ل', appliances: ['غسالات','ثلاجات','بوتاجازات'], issues: ['أعطال الغسالات','مشاكل التبريد','أعطال الشعلات'], overview: 'الالكتروستار من الماركات المعروفة في مصر.' },
+  { slug: 'basaab', name: 'باساب', nameEn: 'Basaab', letter: 'ب', appliances: ['غسالات','ثلاجات','سخانات'], issues: ['أعطال الغسالات','مشاكل التبريد','أعطال الشعلات'], overview: 'نتعامل مع أجهزة باساب بمختلف موديلاتها.' },
+  { slug: 'ge', name: 'جنرال اليكتريك', nameEn: 'General Electric', letter: 'ج', appliances: ['ثلاجات','غسالات','أفران'], issues: ['أعطال التبريد','مشاكل الغسالات','أعطال الأفران'], overview: 'جنرال اليكتريك من الماركات العالمية العريقة.' }
+];
+
+const defaultTitle = 'HomeTech Service | مركز صيانة الأجهزة المنزلية';
+
+// Render brands grid
+document.getElementById('brandsGrid').innerHTML = brandsData.map(brand => `
+  <div class="brand-card" data-aos="zoom-in" onclick="openBrand('${brand.slug}')">
+    <div class="brand-letter">${brand.letter}</div>
+    <h3>صيانة أجهزة ${brand.name}</h3>
+    <div class="brand-en">${brand.nameEn}</div>
+    <div class="brand-tags">
+      ${brand.appliances.slice(0,2).map(a => `<span class="brand-tag">${a}</span>`).join('')}
+    </div>
+  </div>
+`).join('');
+
+// Open brand in full-page tab
+function openBrand(slug) {
+  const brand = brandsData.find(b => b.slug === slug);
+  if (!brand) return;
+
+  // Change page title to brand name
+  document.title = `صيانة أجهزة ${brand.name} | HomeTech Service`;
+  
+  // Update URL hash
+  history.pushState({brand: slug}, '', `#brand=${slug}`);
+
+  const waMessage = encodeURIComponent(`مرحباً، أريد طلب صيانة جهاز ${brand.name}`);
+
+  document.getElementById('modalContent').innerHTML = `
+    <!-- Sticky Hotline Bar at Top of Brand Page -->
+    <div class="brand-sticky-bar">
+      <div class="bar-title">
+        <span class="pulse-dot"></span>
+        <span>🔧 جاهزون لخدمتك الآن - صيانة أجهزة ${brand.name}</span>
+      </div>
+      <a href="tel:19387" class="bar-hotline">
+        <span class="bar-icon">📞</span>
+        <span>الخط الساخن:</span>
+        <span class="bar-number">19387</span>
+      </a>
+      <a href="https://wa.me/201102670999?text=${waMessage}" target="_blank" class="bar-whatsapp">
+        <span class="bar-icon">💬</span>
+        <span>واتساب:</span>
+        <span class="bar-number">01102670999</span>
+      </a>
+    </div>
+
+    <div class="modal-header">
+      <div class="modal-header-inner">
+        <nav class="modal-breadcrumb">
+          <a href="#" onclick="closeBrand();return false;">الرئيسية</a>
+          <span>›</span>
+          <a href="#" onclick="closeBrand();return false;">الماركات</a>
+          <span>›</span>
+          <span>صيانة أجهزة ${brand.name}</span>
+        </nav>
+        
+        ${brand.image ? `
+        <div class="modal-brand-image">
+          <img src="${brand.image}" alt="أجهزة ${brand.name}" loading="eager">
+        </div>
+        ` : `
+        <div class="modal-brand-logo">${brand.letter}</div>
+        `}
+        
+        <h2>صيانة أجهزة <span>${brand.name}</span></h2>
+        <div class="modal-subtitle">${brand.nameEn}</div>
+        <p class="modal-lead">${brand.description || 'خدمات صيانة وإصلاح شاملة لأجهزة ' + brand.name + ' المنزلية'}</p>
+        <div class="modal-badges">
+          <div class="badge">✓ سجل تجاري 321507</div>
+          <div class="badge">✓ مركز صيانة مستقل</div>
+          <div class="badge">✓ ضمان على الأعمال</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Big Contact Cards Section -->
+    <div class="brand-hero-contact">
+      <div class="brand-hero-contact-inner">
+        <a href="tel:19387" class="brand-contact-card hotline-card">
+          <div class="card-icon">📞</div>
+          <div class="card-text">
+            <div class="card-label">اتصل بالخط الساخن الآن</div>
+            <div class="card-number">19387</div>
+            <div class="card-subtext">خدمة سريعة خلال ساعات العمل</div>
+          </div>
+        </a>
+        <a href="https://wa.me/201102670999?text=${waMessage}" target="_blank" class="brand-contact-card whatsapp-card">
+          <div class="card-icon">💬</div>
+          <div class="card-text">
+            <div class="card-label">واتساب خدمة العملاء</div>
+            <div class="card-number">01102670999</div>
+            <div class="card-subtext">راسلنا الآن للرد الفوري</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-section">
+        <h3>📋 نبذة عن الخدمة</h3>
+        <p>${brand.overview}</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>🔧 الأجهزة التي نصلحها</h4>
+          <ul>
+            ${brand.appliances.map(a => `<li>صيانة وإصلاح <strong>${a}</strong> من نوع ${brand.name}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>⚠️ الأعطال الشائعة</h4>
+          <ul>
+            ${brand.issues.map(i => `<li>${i}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <div class="independence-notice">
+        <h4>⚠️ تنويه هام - نحن مركز صيانة مستقل</h4>
+        <p>مركز <strong>HomeTech Service</strong> هو <strong>مركز صيانة مستقل تماماً</strong>، وليس الشركة الأم، وليس فرعاً، وليس وكيلاً رسمياً، وليس مركز صيانة معتمداً من علامة <strong>${brand.name}</strong> التجارية.</p>
+        <ul>
+          <li>لا تربطنا أي علاقة تجارية أو وكالة أو اعتماد مع شركة <strong>${brand.name}</strong></li>
+          <li>نحن مركز صيانة مستقل يقدم خدمات الإصلاح والصيانة</li>
+          <li>أي ذكر لاسم الماركة يهدف فقط إلى توضيح أنواع الأجهزة التي نقوم بصيانتها</li>
+          <li>جميع العلامات التجارية ملك لأصحابها الشرعيين</li>
+          <li>نعمل بسجل تجاري رقم <strong>321507</strong></li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>🛡️ الضمان والخدمة</h3>
+        <ul>
+          <li>ضمان على الأعمال يتراوح بين <strong>6 أشهر وعام</strong></li>
+          <li>تشخيص دقيق قبل البدء في الإصلاح</li>
+          <li>إخطار العميل بالتكلفة مسبقاً</li>
+          <li>فنيون ذوو خبرة في التعامل مع أجهزة ${brand.name}</li>
+          <li>سجل تجاري رقم <strong>321507</strong></li>
+        </ul>
+      </div>
+
+      <div class="modal-cta-bottom">
+        <h3>📞 جاهزون لخدمتك الآن</h3>
+        <p>تواصل معنا عبر الخط الساخن أو الواتساب لطلب صيانة جهاز ${brand.name}</p>
+        <div class="modal-cta-buttons">
+          <a href="tel:19387" class="btn btn-primary">📞 اتصل: 19387</a>
+          <a href="https://wa.me/201102670999?text=${waMessage}" target="_blank" class="btn btn-whatsapp">💬 واتساب: 01102670999</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('brandModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  window.scrollTo(0, 0);
+}
+
+// Close brand page
+function closeBrand() {
+  document.getElementById('brandModal').classList.remove('active');
+  document.body.style.overflow = '';
+  
+  // Restore default title
+  document.title = defaultTitle;
+  
+  // Remove hash from URL
+  history.pushState('', '', window.location.pathname);
+}
+
+// Handle browser back button
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash;
+  if (hash.startsWith('#brand=')) {
+    const slug = hash.replace('#brand=', '');
+    openBrand(slug);
+  } else {
+    closeBrand();
+  }
+});
+
+// Check URL hash on page load
+window.addEventListener('load', () => {
+  const hash = window.location.hash;
+  if (hash.startsWith('#brand=')) {
+    const slug = hash.replace('#brand=', '');
+    if (brandsData.some(b => b.slug === slug)) {
+      setTimeout(() => openBrand(slug), 300);
+    }
+  }
+});
+
+// Menu toggle
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('active');
+}
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  });
+});
+
+// Before/After slider
+document.querySelectorAll('[data-slider]').forEach(slider => {
+  const beforeImg = slider.querySelector('.ba-before');
+  const handle = slider.querySelector('.ba-handle');
+  let isDragging = false;
+
+  function updateSlider(x) {
+    const rect = slider.getBoundingClientRect();
+    let pos = ((x - rect.left) / rect.width) * 100;
+    pos = Math.max(0, Math.min(100, pos));
+    beforeImg.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+    handle.style.left = pos + '%';
+  }
+
+  slider.addEventListener('mousedown', e => { isDragging = true; updateSlider(e.clientX); });
+  window.addEventListener('mousemove', e => { if (isDragging) updateSlider(e.clientX); });
+  window.addEventListener('mouseup', () => { isDragging = false; });
+  slider.addEventListener('touchstart', e => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+  slider.addEventListener('touchmove', e => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+  slider.addEventListener('touchend', () => { isDragging = false; });
+});
+
+// Form submit
+document.getElementById('maintenanceForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('custName').value;
+  const phone = document.getElementById('custPhone').value;
+  const address = document.getElementById('custAddress').value;
+  const deviceType = document.getElementById('deviceType').value;
+  const issue = document.getElementById('deviceIssue').value;
+  
+  const message = `*طلب صيانة جديد*%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالعنوان: ${address}%0Aالجهاز: ${deviceType}%0Aالعطل: ${issue}`;
+  window.open(`https://wa.me/201102670999?text=${message}`, '_blank');
+});
+
+// Init AOS
+AOS.init({ duration: 800, once: true });
+</script>
+
+</body>
+</html>
