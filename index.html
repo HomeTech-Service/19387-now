@@ -15,7 +15,6 @@
 
   gtag('config', 'AW-18345672623');
 
-  // دالة تتبع الإحالات الناجحة لإعلانات جوجل (Conversions Tracking)
   function trackConversion(actionLabel, sendTo = null) {
     if (typeof gtag === 'function') {
       const conversionData = {
@@ -39,7 +38,20 @@
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*, *::before, *::after {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html, body {
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+  scroll-behavior:smooth;
+}
+
 :root{
   --gold:#D4AF37;
   --gold-dark:#B8860B;
@@ -62,8 +74,8 @@
   --radius-md:16px;
   --radius-lg:24px;
   --transition:all .3s ease;
-  --top-bar-height:48px;
-  --nav-height:70px;
+  --top-bar-height:44px;
+  --nav-height:66px;
 }
 
 body{
@@ -71,325 +83,293 @@ body{
   background:var(--gold-cream);
   color:var(--black);
   line-height:1.7;
-  overflow-x:hidden;
   padding-top:calc(var(--top-bar-height) + var(--nav-height));
+  word-wrap:break-word;
 }
 a{text-decoration:none;color:inherit}
 img{max-width:100%;height:auto;display:block}
 
-/* ========== Top Contact Bar ========== */
 .top-contact-bar{
   position:fixed;top:0;left:0;right:0;
-  height:var(--top-bar-height);
+  min-height:var(--top-bar-height);
   background:linear-gradient(90deg,var(--gold-dark),#996515);
   color:var(--white);
-  padding:0 20px;
+  padding:6px 12px;
   z-index:1200;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:25px;
-  font-size:.92rem;
-  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+  gap:16px;
+  font-size:clamp(0.78rem, 2.6vw, 0.92rem);
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
-.top-contact-bar a{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--white);transition:var(--transition)}
-.top-contact-bar a:hover{color:var(--gold-light);transform:scale(1.03)}
+.top-contact-bar a{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--white);white-space:nowrap}
 .top-contact-bar .separator{color:rgba(255,255,255,0.4)}
 
-/* ========== Navbar ========== */
 .navbar{
   position:fixed;top:var(--top-bar-height);left:0;right:0;
-  height:var(--nav-height);
+  min-height:var(--nav-height);
   background:#ffffff;
   box-shadow:0 3px 15px rgba(0,0,0,0.08);
   z-index:1100;
   display:flex;align-items:center;
   border-bottom:2px solid var(--gold);
 }
-.nav-container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.4rem;color:var(--gold-dark)}
-.logo-icon{width:42px;height:42px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.2rem;box-shadow:var(--shadow-sm)}
-.nav-links{display:flex;gap:20px;list-style:none}
+.nav-container{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(12px, 3vw, 20px);display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:clamp(1.15rem, 3.5vw, 1.4rem);color:var(--gold-dark);flex-shrink:0}
+.logo-icon{width:38px;height:38px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.15rem;box-shadow:var(--shadow-sm);flex-shrink:0}
+.nav-links{display:flex;gap:18px;list-style:none}
 .nav-links a{font-weight:700;color:var(--black);transition:color .3s;font-size:.95rem}
 .nav-links a:hover{color:var(--gold-dark)}
-.nav-cta{background:var(--whatsapp);color:var(--white)!important;padding:9px 18px;border-radius:8px;font-weight:700;box-shadow:var(--shadow-sm);transition:var(--transition)}
-.nav-cta:hover{background:var(--whatsapp-dark);transform:translateY(-2px)}
-.menu-toggle{display:none;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--black)}
+.nav-cta{background:var(--whatsapp);color:var(--white)!important;padding:8px 16px;border-radius:8px;font-weight:700;box-shadow:var(--shadow-sm);white-space:nowrap}
+.menu-toggle{display:none;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--black);line-height:1;padding:4px}
 
-/* ========== Hero Section ========== */
 .hero{
-  min-height:calc(100vh - var(--top-bar-height) - var(--nav-height));
-  background:linear-gradient(135deg,rgba(17,24,39,0.94),rgba(31,41,55,0.88)),url('https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/10a5f5c0c-736b-4e25-85fb-db58e9bc77b2.png') center/cover;
-  display:flex;align-items:center;padding:50px 20px;
+  min-height:calc(100vh - (var(--top-bar-height) + var(--nav-height)));
+  background:linear-gradient(135deg,rgba(17,24,39,0.95),rgba(31,41,55,0.90)),url('https://image.qwenlm.ai/public_source/5b77b1ab-d767-44fa-bb45-97ef95c9b9d5/10a5f5c0c-736b-4e25-85fb-db58e9bc77b2.png') center/cover no-repeat;
+  display:flex;align-items:center;padding:clamp(25px, 5vw, 55px) clamp(14px, 4vw, 20px);
 }
-.hero-content{width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:40px;align-items:center}
-.hero-text h1{font-size:2.8rem;color:var(--white);margin-bottom:20px;line-height:1.3;font-weight:800}
+.hero-content{width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:clamp(25px, 4vw, 40px);align-items:center}
+.hero-text h1{font-size:clamp(1.65rem, 5.5vw, 2.8rem);color:var(--white);margin-bottom:16px;line-height:1.3;font-weight:800}
 .hero-text h1 span{color:var(--gold-light)}
-.hero-text p{font-size:1.15rem;color:#f3f4f6;margin-bottom:25px;line-height:1.8}
-.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
-.badge{background:#1e293b;padding:8px 16px;border-radius:30px;color:var(--white);border:1px solid #475569;font-weight:600;font-size:.9rem}
-.hero-buttons{display:flex;gap:15px;flex-wrap:wrap}
-.btn{padding:14px 28px;border-radius:10px;font-weight:700;display:inline-flex;align-items:center;gap:10px;font-size:1rem;border:none;cursor:pointer;font-family:inherit;transition:all .3s}
+.hero-text p{font-size:clamp(0.95rem, 2.8vw, 1.15rem);color:#f3f4f6;margin-bottom:20px;line-height:1.7}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
+.badge{background:#1e293b;padding:6px 14px;border-radius:30px;color:var(--white);border:1px solid #475569;font-weight:600;font-size:clamp(0.78rem, 2.4vw, 0.9rem)}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;width:100%}
+.btn{padding:12px 24px;border-radius:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:clamp(0.9rem, 2.6vw, 1rem);border:none;cursor:pointer;font-family:inherit;transition:all .3s}
 .btn-primary{background:var(--gold);color:var(--black);box-shadow:0 6px 20px rgba(212,175,55,0.35);font-weight:800}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
 .btn-whatsapp{background:var(--whatsapp);color:var(--white);box-shadow:0 6px 20px rgba(37,211,102,0.35)}
-.btn-whatsapp:hover{background:var(--whatsapp-dark);transform:translateY(-2px)}
-.hero-card{background:#1f2937;border-radius:20px;padding:30px;border:2px solid #374151;color:var(--white);box-shadow:var(--shadow-lg)}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.stat-item{text-align:center;padding:18px;background:#111827;border-radius:14px;border:1px solid #374151}
-.stat-number{font-size:2rem;font-weight:800;color:var(--gold-light);display:block;direction:ltr}
-.stat-label{font-size:.9rem;color:#e5e7eb;font-weight:600}
+.hero-card{background:#1f2937;border-radius:18px;padding:clamp(16px, 3.5vw, 28px);border:2px solid #374151;color:var(--white);box-shadow:var(--shadow-lg);width:100%}
+.stat-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:12px}
+.stat-item{text-align:center;padding:14px 10px;background:#111827;border-radius:12px;border:1px solid #374151}
+.stat-number{font-size:clamp(1.4rem, 4vw, 2rem);font-weight:800;color:var(--gold-light);display:block;direction:ltr}
+.stat-label{font-size:clamp(0.78rem, 2.3vw, 0.9rem);color:#e5e7eb;font-weight:600}
 
-/* ========== Section Styles ========== */
-section{padding:70px 20px}
-.container{max-width:1200px;margin:0 auto}
-.section-header{text-align:center;margin-bottom:50px}
-.section-tag{display:inline-block;background:#ffffff;color:var(--gold-dark);padding:6px 18px;border-radius:30px;font-weight:800;margin-bottom:12px;border:2px solid var(--gold);box-shadow:var(--shadow-sm);font-size:.9rem}
-.section-header h2{font-size:2.3rem;margin-bottom:12px;color:var(--black);font-weight:800}
-.section-header p{color:var(--gray);font-size:1.1rem;max-width:700px;margin:0 auto}
+section{padding:clamp(45px, 7vw, 70px) clamp(14px, 3.5vw, 20px)}
+.container{width:100%;max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:clamp(28px, 5vw, 50px)}
+.section-tag{display:inline-block;background:#ffffff;color:var(--gold-dark);padding:5px 16px;border-radius:30px;font-weight:800;margin-bottom:10px;border:2px solid var(--gold);box-shadow:var(--shadow-sm);font-size:clamp(0.78rem, 2.3vw, 0.9rem)}
+.section-header h2{font-size:clamp(1.45rem, 4.5vw, 2.3rem);margin-bottom:10px;color:var(--black);font-weight:800}
+.section-header p{color:var(--gray);font-size:clamp(0.9rem, 2.7vw, 1.1rem);max-width:700px;margin:0 auto}
 
-/* ========== About Section ========== */
+/* About Section */
 .about{background:#ffffff}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.about-text h3{font-size:1.7rem;margin-bottom:20px;position:relative;padding-bottom:12px;color:var(--gold-dark);font-weight:800}
-.about-text h3::after{content:'';position:absolute;bottom:0;right:0;width:60px;height:3px;background:var(--gold)}
-.about-text p{color:var(--gray);margin-bottom:16px;font-size:1.02rem}
-.about-features{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}
-.about-feature{background:var(--gold-cream);padding:18px;border-radius:12px;border-right:4px solid var(--gold);box-shadow:var(--shadow-sm);border:1px solid #f1e2b8}
-.about-feature-icon{width:45px;height:45px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.3rem;margin-bottom:10px}
-.about-feature h4{margin-bottom:5px;font-size:1rem;color:var(--black);font-weight:800}
-.about-feature p{color:var(--gray);font-size:.88rem;margin:0}
-.about-image{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);border:3px solid var(--gold)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(25px, 4vw, 50px);align-items:center}
+.about-text h3{font-size:clamp(1.3rem, 3.8vw, 1.7rem);margin-bottom:16px;position:relative;padding-bottom:10px;color:var(--gold-dark);font-weight:800}
+.about-text h3::after{content:'';position:absolute;bottom:0;right:0;width:50px;height:3px;background:var(--gold)}
+.about-text p{color:var(--gray);margin-bottom:14px;font-size:clamp(0.9rem, 2.6vw, 1.02rem)}
+.about-features{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:14px;margin-top:20px}
+.about-feature{background:var(--gold-cream);padding:14px;border-radius:12px;border-right:4px solid var(--gold);box-shadow:var(--shadow-sm);border:1px solid #f1e2b8}
+.about-feature-icon{width:40px;height:40px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.2rem;margin-bottom:8px}
+.about-feature h4{margin-bottom:4px;font-size:clamp(0.92rem, 2.6vw, 1rem);color:var(--black);font-weight:800}
+.about-feature p{color:var(--gray);font-size:.85rem;margin:0}
+.about-image{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);border:3px solid var(--gold);width:100%}
 
-/* ========== Services Section ========== */
+/* Services Section */
 .services{background:var(--gold-soft)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
-.service-card{background:#ffffff;padding:30px 20px;border-radius:16px;text-align:center;transition:all .3s;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
-.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--gold)}
-.service-icon{width:70px;height:70px;background:#fef3c7;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2rem;color:var(--gold-dark)}
-.service-card h3{font-size:1.25rem;margin-bottom:10px;color:var(--black);font-weight:800}
-.service-card p{color:var(--gray);font-size:.95rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.service-card{background:#ffffff;padding:24px 18px;border-radius:16px;text-align:center;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
+.service-icon{width:60px;height:60px;background:#fef3c7;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.8rem;color:var(--gold-dark)}
+.service-card h3{font-size:clamp(1.05rem, 3vw, 1.25rem);margin-bottom:8px;color:var(--black);font-weight:800}
+.service-card p{color:var(--gray);font-size:clamp(0.85rem, 2.4vw, 0.95rem)}
 
-/* ========== Before / After Slider ========== */
+/* Before / After Slider Mobile Adjustments */
 .before-after{background:#ffffff}
-.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
-.ba-card{background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid #e5e7eb}
-.ba-slider{position:relative;height:280px;overflow:hidden;cursor:col-resize;user-select:none;touch-action:pan-y}
+.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.ba-card{background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid #e5e7eb;width:100%}
+.ba-slider{position:relative;height:clamp(220px, 45vw, 280px);overflow:hidden;cursor:col-resize;user-select:none;touch-action:pan-y}
 .ba-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .ba-before{clip-path:inset(0 50% 0 0);z-index:2}
 .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:4px;background:#ffffff;transform:translateX(-50%);z-index:5;box-shadow:0 0 10px rgba(0,0,0,0.4)}
-.ba-handle::before{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#ffffff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--black);border:2px solid var(--gold);box-shadow:0 4px 12px rgba(0,0,0,0.25)}
-.ba-label{position:absolute;top:12px;padding:6px 14px;border-radius:20px;font-weight:700;font-size:.85rem;z-index:4;color:#ffffff}
-.ba-label-before{right:12px;background:#111827}
-.ba-label-after{left:12px;background:var(--gold-dark)}
-.ba-info{padding:18px;text-align:center;background:var(--gold-cream);border-top:1px solid #e5e7eb}
-.ba-info h4{font-size:1.15rem;margin-bottom:4px;color:var(--black);font-weight:800}
-.ba-info p{color:var(--gray);font-size:.9rem}
+.ba-handle::before{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#ffffff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--black);border:2px solid var(--gold);box-shadow:0 3px 10px rgba(0,0,0,0.25)}
+.ba-label{position:absolute;top:10px;padding:4px 12px;border-radius:20px;font-weight:700;font-size:clamp(0.72rem, 2vw, 0.85rem);z-index:4;color:#ffffff}
+.ba-label-before{right:10px;background:#111827}
+.ba-label-after{left:10px;background:var(--gold-dark)}
+.ba-info{padding:14px;text-align:center;background:var(--gold-cream);border-top:1px solid #e5e7eb}
+.ba-info h4{font-size:clamp(1rem, 2.8vw, 1.15rem);margin-bottom:3px;color:var(--black);font-weight:800}
+.ba-info p{color:var(--gray);font-size:.85rem}
 
-/* ========== Brands Grid (Pure Arabic) ========== */
+/* Brands Grid */
 .brands{background:var(--gold-soft)}
-.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px}
-.brand-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:18px 12px;text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;box-shadow:var(--shadow-sm)}
-.brand-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:var(--shadow-md);background:#fffdf7}
-.brand-letter{width:52px;height:52px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:1.5rem;font-weight:800;box-shadow:0 4px 10px rgba(212,175,55,0.3)}
-.brand-card h3{font-size:1.05rem;font-weight:800;color:var(--black)}
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px}
+.brand-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;box-shadow:var(--shadow-sm);width:100%}
+.brand-letter{width:46px;height:46px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:1.35rem;font-weight:800;box-shadow:0 3px 8px rgba(212,175,55,0.3)}
+.brand-card h3{font-size:clamp(0.85rem, 2.5vw, 1rem);font-weight:800;color:var(--black);line-height:1.3}
 .brand-card .brand-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
-.brand-tag{background:var(--gold-cream);color:var(--gold-dark);padding:3px 8px;border-radius:8px;font-size:.75rem;font-weight:700;border:1px solid #e5e7eb}
-.brands-more{text-align:center;margin-top:35px}
-.brands-more p{color:var(--gray);margin-bottom:15px;font-weight:700}
+.brand-tag{background:var(--gold-cream);color:var(--gold-dark);padding:2px 6px;border-radius:6px;font-size:clamp(0.68rem, 2vw, 0.75rem);font-weight:700;border:1px solid #e5e7eb}
+.brands-more{text-align:center;margin-top:30px}
+.brands-more p{color:var(--gray);margin-bottom:12px;font-weight:700;font-size:clamp(0.9rem, 2.6vw, 1rem)}
 
-/* ========== Why Us ========== */
+/* Why Us Section */
 .why-us{background:linear-gradient(135deg,#1f2937,#111827);color:#ffffff}
 .why-us .section-header h2{color:#ffffff}
 .why-us .section-header p{color:#d1d5db}
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.why-card{background:#1e293b;padding:26px 20px;border-radius:16px;border:1px solid #374151;text-align:center;transition:all .3s}
-.why-card:hover{background:#273549;transform:translateY(-6px);border-color:var(--gold)}
-.why-icon{width:60px;height:60px;background:#374151;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.6rem;color:var(--gold-light)}
-.why-card h3{font-size:1.15rem;margin-bottom:8px;color:var(--gold-light);font-weight:800}
-.why-card p{font-size:.92rem;color:#e5e7eb}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.why-card{background:#1e293b;padding:22px 16px;border-radius:14px;border:1px solid #374151;text-align:center}
+.why-icon{width:52px;height:52px;background:#374151;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.4rem;color:var(--gold-light)}
+.why-card h3{font-size:clamp(1rem, 2.8vw, 1.15rem);margin-bottom:6px;color:var(--gold-light);font-weight:800}
+.why-card p{font-size:clamp(0.82rem, 2.4vw, 0.92rem);color:#e5e7eb}
 
-/* ========== Warranty Banner ========== */
-.warranty-banner{background:#ffffff;padding:35px 20px;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
-.warranty-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.warranty-text h3{font-size:1.5rem;margin-bottom:6px;color:var(--black);font-weight:800}
-.warranty-text p{font-size:1.02rem;color:var(--gray)}
-.warranty-icon{font-size:3.5rem}
+/* Warranty Banner */
+.warranty-banner{background:#ffffff;padding:28px 16px;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
+.warranty-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.warranty-text h3{font-size:clamp(1.15rem, 3.5vw, 1.5rem);margin-bottom:4px;color:var(--black);font-weight:800}
+.warranty-text p{font-size:clamp(0.85rem, 2.5vw, 1.02rem);color:var(--gray)}
+.warranty-icon{font-size:clamp(2.5rem, 6vw, 3.5rem)}
 
-/* ========== FAQ Section ========== */
+/* FAQ Section */
 .faq{background:var(--gold-soft)}
 .faq-list{max-width:850px;margin:0 auto}
-.faq-item{background:#ffffff;border-radius:12px;margin-bottom:12px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
-.faq-question{width:100%;padding:18px 22px;background:none;border:none;display:flex;justify-content:space-between;align-items:center;font-size:1.05rem;font-weight:800;text-align:right;cursor:pointer;font-family:inherit;color:var(--black)}
-.faq-question:hover{color:var(--gold-dark)}
-.faq-icon{width:28px;height:28px;background:var(--gold);color:#ffffff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;transition:transform .3s;flex-shrink:0}
+.faq-item{background:#ffffff;border-radius:12px;margin-bottom:10px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
+.faq-question{width:100%;padding:14px 18px;background:none;border:none;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:clamp(0.92rem, 2.6vw, 1.05rem);font-weight:800;text-align:right;cursor:pointer;font-family:inherit;color:var(--black)}
+.faq-icon{width:26px;height:26px;background:var(--gold);color:#ffffff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;transition:transform .3s;flex-shrink:0}
 .faq-item.active .faq-icon{transform:rotate(45deg)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease-out;padding:0 22px;color:var(--gray)}
-.faq-item.active .faq-answer{max-height:300px;padding:0 22px 18px}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease-out;padding:0 18px;color:var(--gray);font-size:clamp(0.85rem, 2.4vw, 0.95rem)}
+.faq-item.active .faq-answer{max-height:300px;padding:0 18px 14px}
 
-/* ========== Contact Section ========== */
 .contact{background:#ffffff}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px}
-.contact-info{background:var(--gold-cream);padding:35px;border-radius:16px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
-.contact-info h3{font-size:1.6rem;margin-bottom:20px;color:var(--black);font-weight:800}
-.contact-item{display:flex;gap:15px;margin-bottom:18px}
-.contact-icon{width:50px;height:50px;background:var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:1.3rem;flex-shrink:0}
-.contact-details h4{margin-bottom:4px;color:var(--black);font-weight:800}
-.contact-details p{color:var(--gray)}
-.whatsapp-box,.hotline-box{padding:20px;border-radius:14px;text-align:center;margin-top:15px;display:block;transition:all .3s}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.contact-info{background:var(--gold-cream);padding:clamp(18px, 4vw, 35px);border-radius:16px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
+.contact-info h3{font-size:clamp(1.25rem, 3.8vw, 1.6rem);margin-bottom:18px;color:var(--black);font-weight:800}
+.contact-item{display:flex;gap:12px;margin-bottom:14px;align-items:center}
+.contact-icon{width:44px;height:44px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:1.2rem;flex-shrink:0}
+.contact-details h4{margin-bottom:2px;color:var(--black);font-weight:800;font-size:clamp(0.9rem, 2.5vw, 1rem)}
+.contact-details p{color:var(--gray);font-size:clamp(0.85rem, 2.4vw, 0.95rem)}
+.whatsapp-box,.hotline-box{padding:16px;border-radius:12px;text-align:center;margin-top:12px;display:block}
 .whatsapp-box{background:var(--whatsapp);color:#ffffff}
 .hotline-box{background:var(--black);color:#ffffff}
-.whatsapp-box:hover,.hotline-box:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.whatsapp-box .wa-number,.hotline-box .number{font-size:1.8rem;font-weight:800;display:block;margin:6px 0;direction:ltr}
+.whatsapp-box .wa-number,.hotline-box .number{font-size:clamp(1.4rem, 4.5vw, 1.8rem);font-weight:800;display:block;margin:4px 0;direction:ltr}
 
-.contact-form{background:#ffffff;padding:35px;border-radius:16px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
-.contact-form h3{font-size:1.6rem;margin-bottom:18px;color:var(--black);font-weight:800}
-.form-group{margin-bottom:15px}
-.form-group label{display:block;margin-bottom:6px;font-weight:700;color:var(--black);font-size:.95rem}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:10px;font-family:inherit;font-size:.95rem;background:#ffffff;color:var(--black)}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,0.2)}
-.form-group textarea{resize:vertical;min-height:95px}
+.contact-form{background:#ffffff;padding:clamp(18px, 4vw, 35px);border-radius:16px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
+.contact-form h3{font-size:clamp(1.25rem, 3.8vw, 1.6rem);margin-bottom:16px;color:var(--black);font-weight:800}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;margin-bottom:5px;font-weight:700;color:var(--black);font-size:clamp(0.85rem, 2.4vw, 0.95rem)}
+.form-group input,.form-group select,.form-group textarea{width:100%;max-width:100%;padding:11px 12px;border:1px solid #d1d5db;border-radius:10px;font-family:inherit;font-size:clamp(0.88rem, 2.5vw, 0.95rem);background:#ffffff;color:var(--black)}
+.form-group textarea{resize:vertical;min-height:90px}
 
-/* ========== Policies & Disclaimer ========== */
+/* Policies & Disclaimer */
 .policy-section{background:var(--gold-soft)}
-.policy-content{max-width:850px;margin:0 auto;background:#ffffff;padding:40px;border-radius:16px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
-.policy-content h3{color:var(--black);margin:24px 0 12px;font-size:1.25rem;font-weight:800;border-bottom:2px solid var(--gold);padding-bottom:8px}
+.policy-content{max-width:850px;margin:0 auto;background:#ffffff;padding:clamp(20px, 4vw, 40px);border-radius:16px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
+.policy-content h3{color:var(--black);margin:20px 0 10px;font-size:clamp(1.1rem, 3.2vw, 1.25rem);font-weight:800;border-bottom:2px solid var(--gold);padding-bottom:6px}
 .policy-content h3:first-child{margin-top:0}
-.policy-content p,.policy-content li{margin-bottom:10px;line-height:1.8;color:var(--gray)}
-.policy-content ul{padding-right:20px;margin-bottom:12px}
-.policy-update{background:var(--gold-cream);padding:12px 16px;border-radius:8px;margin-top:20px;font-size:.85rem;color:var(--gray);border-right:3px solid var(--gold)}
+.policy-content p,.policy-content li{margin-bottom:8px;line-height:1.8;color:var(--gray);font-size:clamp(0.85rem, 2.5vw, 0.95rem)}
+.policy-content ul{padding-right:20px;margin-bottom:10px}
+.policy-update{background:var(--gold-cream);padding:10px 14px;border-radius:8px;margin-top:16px;font-size:.82rem;color:var(--gray);border-right:3px solid var(--gold)}
 
-.disclaimer{background:#ffffff;border-right:6px solid var(--gold);padding:25px;border-radius:12px;margin:30px auto;max-width:950px;border:1px solid #e5e7eb;border-right:6px solid var(--gold);box-shadow:var(--shadow-sm)}
-.disclaimer h4{color:var(--black);margin-bottom:10px;font-size:1.15rem;font-weight:800}
-.disclaimer p{line-height:1.8;margin-bottom:10px;color:var(--gray);font-size:.92rem}
-.disclaimer ul{padding-right:20px}
-.disclaimer li{margin-bottom:6px;color:var(--gray);font-size:.9rem}
+.disclaimer{background:#ffffff;border-right:6px solid var(--gold);padding:clamp(16px, 3.5vw, 25px);border-radius:12px;margin:25px auto;max-width:950px;border:1px solid #e5e7eb;border-right:6px solid var(--gold);box-shadow:var(--shadow-sm)}
+.disclaimer h4{color:var(--black);margin-bottom:8px;font-size:clamp(1.05rem, 3vw, 1.15rem);font-weight:800}
+.disclaimer p{line-height:1.7;margin-bottom:8px;color:var(--gray);font-size:clamp(0.85rem, 2.4vw, 0.92rem)}
+.disclaimer ul{padding-right:18px}
+.disclaimer li{margin-bottom:5px;color:var(--gray);font-size:clamp(0.82rem, 2.3vw, 0.9rem)}
 
-/* ========== Footer ========== */
-footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px solid var(--gold)}
-.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px;margin-bottom:30px}
-.footer-col h4{color:var(--gold-light);margin-bottom:16px;font-size:1.1rem;font-weight:800}
-.footer-col a{color:#9ca3af;display:block;line-height:2.1;transition:color .3s;font-size:.92rem}
-.footer-col a:hover{color:var(--gold-light)}
-.footer-legal{background:#1f2937;padding:15px;border-radius:8px;margin-top:16px;font-size:.85rem;line-height:1.8;border:1px solid #374151}
+/* Footer */
+footer{background:#111827;color:#e5e7eb;padding:clamp(35px, 6vw, 50px) clamp(14px, 3vw, 20px) 20px;border-top:4px solid var(--gold)}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:25px;margin-bottom:25px}
+.footer-col h4{color:var(--gold-light);margin-bottom:14px;font-size:clamp(0.98rem, 2.8vw, 1.1rem);font-weight:800}
+.footer-col a{color:#9ca3af;display:block;line-height:2;transition:color .3s;font-size:clamp(0.85rem, 2.4vw, 0.92rem)}
+.footer-legal{background:#1f2937;padding:12px;border-radius:8px;margin-top:14px;font-size:clamp(0.8rem, 2.3vw, 0.85rem);line-height:1.8;border:1px solid #374151}
 .footer-legal strong{color:var(--gold-light)}
-.footer-bottom{max-width:1200px;margin:0 auto;padding-top:20px;border-top:1px solid #374151;text-align:center;font-size:.85rem;color:#9ca3af}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:18px;border-top:1px solid #374151;text-align:center;font-size:clamp(0.78rem, 2.2vw, 0.85rem);color:#9ca3af}
 
-/* ========== Brand Modal & Kiriazi Special Theme ========== */
-.modal{display:none;position:fixed;inset:0;background:#f9fafb;z-index:3000;overflow-y:auto}
+.modal{display:none;position:fixed;inset:0;background:#f9fafb;z-index:3000;overflow-y:auto;overflow-x:hidden}
 .modal.active{display:block}
 
 .brand-sticky-bar{
   position:sticky;top:0;z-index:3100;
   background:#ffffff;
-  padding:12px 20px;
-  display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;
+  padding:10px 14px;
+  display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;
   box-shadow:0 3px 15px rgba(0,0,0,0.08);
   border-bottom:2px solid var(--gold);
+  width:100%;
 }
-.brand-sticky-bar .bar-title{color:var(--black);font-weight:800;font-size:.95rem;display:flex;align-items:center;gap:8px}
-.brand-sticky-bar .bar-title .pulse-dot{width:10px;height:10px;background:#10B981;border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite}
+.brand-sticky-bar .bar-title{color:var(--black);font-weight:800;font-size:clamp(0.82rem, 2.5vw, 0.95rem);display:flex;align-items:center;gap:6px}
+.brand-sticky-bar .bar-title .pulse-dot{width:8px;height:8px;background:#10B981;border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
 
-.brand-sticky-bar a{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:50px;font-weight:800;font-size:.9rem;color:#ffffff;transition:all .3s}
+.brand-sticky-bar a{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:50px;font-weight:800;font-size:clamp(0.8rem, 2.4vw, 0.9rem);color:#ffffff;white-space:nowrap}
 .brand-sticky-bar .bar-hotline{background:#111827}
-.brand-sticky-bar .bar-hotline:hover{background:#1f2937;transform:translateY(-2px)}
 .brand-sticky-bar .bar-whatsapp{background:var(--whatsapp)}
-.brand-sticky-bar .bar-whatsapp:hover{background:var(--whatsapp-dark);transform:translateY(-2px)}
-.brand-sticky-bar .bar-number{font-size:1.15rem;direction:ltr;display:inline-block}
+.brand-sticky-bar .bar-number{font-size:clamp(1rem, 3vw, 1.15rem);direction:ltr;display:inline-block}
 
 .modal-close{
-  position:fixed;top:65px;left:20px;width:44px;height:44px;border-radius:50%;
+  position:fixed;top:60px;left:14px;width:38px;height:38px;border-radius:50%;
   background:#ffffff;color:var(--black);border:2px solid #e5e7eb;
-  font-size:1.6rem;font-weight:700;cursor:pointer;z-index:3200;
-  box-shadow:var(--shadow-md);transition:all .3s;display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;font-weight:700;cursor:pointer;z-index:3200;
+  box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;
 }
-.modal-close:hover{background:#f3f4f6;transform:scale(1.05)}
 
-/* Default Modal Header */
+/* Modal Headers */
 .modal-header{
   background:linear-gradient(135deg,#1f2937,#111827);
-  padding:50px 20px 40px;color:#ffffff;text-align:center;
+  padding:clamp(30px, 6vw, 45px) 14px clamp(25px, 5vw, 35px);
+  color:#ffffff;text-align:center;
   border-bottom:3px solid var(--gold);
 }
 .modal-header-inner{max-width:900px;margin:0 auto}
-.modal-breadcrumb{display:flex;justify-content:center;gap:8px;margin-bottom:15px;font-size:.9rem}
+.modal-breadcrumb{display:flex;justify-content:center;gap:6px;margin-bottom:12px;font-size:clamp(0.78rem, 2.3vw, 0.9rem);flex-wrap:wrap}
 .modal-breadcrumb a{color:var(--gold-light);font-weight:700}
 .modal-breadcrumb span{color:#9ca3af}
-.modal-brand-logo{width:90px;height:90px;margin:0 auto 16px;background:#ffffff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-size:2.5rem;font-weight:800;box-shadow:var(--shadow-md);border:3px solid var(--gold)}
-.modal-header h2{font-size:2.2rem;margin-bottom:8px;font-weight:800}
+.modal-brand-logo{width:80px;height:80px;margin:0 auto 14px;background:#ffffff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-size:2.2rem;font-weight:800;box-shadow:var(--shadow-md);border:3px solid var(--gold)}
+.modal-header h2{font-size:clamp(1.4rem, 4.5vw, 2.2rem);margin-bottom:6px;font-weight:800}
 .modal-header h2 span{color:var(--gold-light)}
-.modal-lead{font-size:1.05rem;color:#e5e7eb;max-width:750px;margin:0 auto 20px}
-.modal-badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.modal-lead{font-size:clamp(0.88rem, 2.6vw, 1.05rem);color:#e5e7eb;max-width:750px;margin:0 auto 16px;line-height:1.7}
+.modal-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 
 /* Brand Hero Contact Cards */
-.brand-hero-contact{background:#ffffff;padding:25px 20px;border-bottom:1px solid #e5e7eb}
-.brand-hero-contact-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.brand-contact-card{padding:20px;border-radius:14px;display:flex;align-items:center;gap:16px;text-align:right;color:#ffffff;transition:all .3s}
-.brand-contact-card.hotline-card{background:#111827;box-shadow:var(--shadow-sm)}
-.brand-contact-card.whatsapp-card{background:var(--whatsapp);box-shadow:var(--shadow-sm)}
-.brand-contact-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.brand-contact-card .card-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0;background:#ffffff;color:var(--black)}
+.brand-hero-contact{background:#ffffff;padding:20px 14px;border-bottom:1px solid #e5e7eb}
+.brand-hero-contact-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.brand-contact-card{padding:16px;border-radius:14px;display:flex;align-items:center;gap:12px;text-align:right;color:#ffffff;width:100%}
+.brand-contact-card.hotline-card{background:#111827}
+.brand-contact-card.whatsapp-card{background:var(--whatsapp)}
+.brand-contact-card .card-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;background:#ffffff;color:var(--black)}
 .brand-contact-card.whatsapp-card .card-icon{color:var(--whatsapp-dark)}
-.brand-contact-card .card-text{flex:1}
-.brand-contact-card .card-label{font-size:.9rem;font-weight:600}
-.brand-contact-card .card-number{font-size:1.8rem;font-weight:800;direction:ltr;display:inline-block}
-.brand-contact-card .card-subtext{font-size:.8rem;opacity:.9}
+.brand-contact-card .card-text{flex:1;min-width:0}
+.brand-contact-card .card-label{font-size:clamp(0.82rem, 2.4vw, 0.9rem);font-weight:600}
+.brand-contact-card .card-number{font-size:clamp(1.35rem, 4.5vw, 1.8rem);font-weight:800;direction:ltr;display:inline-block}
+.brand-contact-card .card-subtext{font-size:.78rem;opacity:.9}
 
-/* Modal Content Sections */
-.modal-body{padding:40px 20px;max-width:1000px;margin:0 auto}
-.modal-section{margin-bottom:35px}
-.modal-section h3{color:var(--black);font-size:1.4rem;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--gold);font-weight:800}
-.modal-section p{margin-bottom:10px;font-size:1rem;color:var(--gray)}
-.modal-section ul{padding-right:20px;margin-bottom:15px}
-.modal-section li{margin-bottom:8px;font-size:1rem;color:var(--gray)}
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.info-card{background:#ffffff;padding:22px;border-radius:14px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
-.info-card h4{color:var(--black);font-size:1.1rem;margin-bottom:12px;font-weight:800}
-.info-card ul{padding-right:18px}
-.info-card li{margin-bottom:6px;color:var(--gray)}
+/* Modal Body */
+.modal-body{padding:clamp(25px, 5vw, 40px) clamp(14px, 3.5vw, 20px);max-width:1000px;margin:0 auto}
+.modal-section{margin-bottom:28px}
+.modal-section h3{color:var(--black);font-size:clamp(1.15rem, 3.5vw, 1.4rem);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--gold);font-weight:800}
+.modal-section p{margin-bottom:8px;font-size:clamp(0.88rem, 2.5vw, 1rem);color:var(--gray)}
+.modal-section ul{padding-right:18px;margin-bottom:12px}
+.modal-section li{margin-bottom:6px;font-size:clamp(0.85rem, 2.4vw, 1rem);color:var(--gray)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info-card{background:#ffffff;padding:18px;border-radius:14px;border:1px solid #e5e7eb;box-shadow:var(--shadow-sm)}
+.info-card h4{color:var(--black);font-size:clamp(0.98rem, 2.8vw, 1.1rem);margin-bottom:10px;font-weight:800}
+.info-card ul{padding-right:16px}
+.info-card li{margin-bottom:5px;color:var(--gray);font-size:clamp(0.82rem, 2.3vw, 0.92rem)}
 
-.independence-notice{background:#ffffff;border:1px solid #e5e7eb;border-right:6px solid var(--gold);padding:25px;border-radius:14px;margin:25px 0;box-shadow:var(--shadow-sm)}
-.independence-notice h4{color:var(--black);margin-bottom:12px;font-size:1.2rem;font-weight:800}
-.independence-notice p{margin-bottom:10px;color:var(--gray)}
-.independence-notice ul{padding-right:20px}
-.independence-notice li{margin-bottom:8px;color:var(--gray)}
+.independence-notice{background:#ffffff;border:1px solid #e5e7eb;border-right:6px solid var(--gold);padding:18px;border-radius:14px;margin:20px 0;box-shadow:var(--shadow-sm)}
+.independence-notice h4{color:var(--black);margin-bottom:10px;font-size:clamp(1.05rem, 3vw, 1.2rem);font-weight:800}
+.independence-notice p{margin-bottom:8px;color:var(--gray);font-size:clamp(0.85rem, 2.4vw, 0.95rem)}
+.independence-notice ul{padding-right:18px}
+.independence-notice li{margin-bottom:6px;color:var(--gray);font-size:clamp(0.82rem, 2.3vw, 0.9rem)}
 
-.modal-cta-bottom{background:#111827;padding:35px 20px;border-radius:16px;text-align:center;color:#ffffff;margin-top:35px}
-.modal-cta-bottom h3{color:#ffffff;font-size:1.5rem;margin-bottom:8px;border:none;padding:0;font-weight:800}
-.modal-cta-bottom p{color:#d1d5db;margin-bottom:20px}
-.modal-cta-buttons{display:grid;grid-template-columns:1fr 1fr;gap:15px;max-width:600px;margin:0 auto}
-.modal-cta-buttons .btn{justify-content:center;width:100%;padding:15px}
+.modal-cta-bottom{background:#111827;padding:28px 16px;border-radius:16px;text-align:center;color:#ffffff;margin-top:28px}
+.modal-cta-bottom h3{color:#ffffff;font-size:clamp(1.2rem, 3.8vw, 1.5rem);margin-bottom:6px;border:none;padding:0;font-weight:800}
+.modal-cta-bottom p{color:#d1d5db;margin-bottom:16px;font-size:clamp(0.85rem, 2.5vw, 0.95rem)}
+.modal-cta-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:600px;margin:0 auto}
+.modal-cta-buttons .btn{justify-content:center;width:100%;padding:13px}
 
-/* ========== KIRIAZI CUSTOM WHITE & EMERALD GREEN THEME ========== */
 .theme-kiriazi .brand-sticky-bar{
   background:#ffffff;
   border-bottom:3px solid #10B981;
 }
-.theme-kiriazi .brand-sticky-bar .bar-title{
-  color:#065f46;
-}
+.theme-kiriazi .brand-sticky-bar .bar-title{color:#065f46}
 .theme-kiriazi .modal-header{
   background:#ffffff;
   color:#111827;
   border-bottom:3px solid #10B981;
-  padding:40px 20px 30px;
+  padding:clamp(25px, 5vw, 35px) 14px 20px;
 }
-.theme-kiriazi .modal-breadcrumb a{
-  color:#059669;
-}
-.theme-kiriazi .modal-breadcrumb span{
-  color:#6b7280;
-}
-.theme-kiriazi .modal-header h2{
-  color:#111827;
-}
-.theme-kiriazi .modal-header h2 span{
-  color:#059669;
-}
-.theme-kiriazi .modal-lead{
-  color:#374151;
-}
+.theme-kiriazi .modal-breadcrumb a{color:#059669}
+.theme-kiriazi .modal-breadcrumb span{color:#6b7280}
+.theme-kiriazi .modal-header h2{color:#111827}
+.theme-kiriazi .modal-header h2 span{color:#059669}
+.theme-kiriazi .modal-lead{color:#374151}
 .theme-kiriazi .modal-badges .badge{
   background:#f0fdf4;
   color:#065f46;
@@ -399,31 +379,25 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
   color:#065f46;
   border-bottom:2px solid #10B981;
 }
-.theme-kiriazi .independence-notice{
-  border-right:6px solid #10B981;
-}
-.theme-kiriazi .independence-notice h4{
-  color:#065f46;
-}
-.theme-kiriazi .info-card h4{
-  color:#065f46;
-}
+.theme-kiriazi .independence-notice{border-right:6px solid #10B981}
+.theme-kiriazi .independence-notice h4,
+.theme-kiriazi .info-card h4{color:#065f46}
 .theme-kiriazi .modal-cta-bottom{
   background:linear-gradient(135deg,#065f46,#047857);
 }
 
-/* Kiriazi Enlarged Image with Animated Hotline Badge */
+/* Kiriazi Image & Pulse Badge */
 .modal-brand-image-wrapper{
   width:100%;
   max-width:580px;
-  margin:0 auto 25px;
+  margin:0 auto 20px;
   position:relative;
 }
 .modal-brand-image{
   position:relative;
   width:100%;
-  height:280px;
-  border-radius:18px;
+  height:clamp(200px, 46vw, 290px);
+  border-radius:16px;
   overflow:hidden;
   border:3px solid #10B981;
   box-shadow:var(--shadow-md);
@@ -435,41 +409,35 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
   object-fit:cover;
 }
 
-/* Pulsing Green Hotline Badge on Image */
 .brand-image-hotline-badge{
   position:absolute;
-  bottom:15px;
-  right:15px;
+  bottom:12px;
+  right:12px;
   background:linear-gradient(135deg,#10B981,#059669);
   color:#ffffff !important;
-  padding:10px 18px;
+  padding:8px 16px;
   border-radius:40px;
   display:inline-flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
   text-decoration:none;
-  box-shadow:0 8px 25px rgba(16,185,129,0.5), 0 0 0 3px #ffffff;
+  box-shadow:0 6px 20px rgba(16,185,129,0.5), 0 0 0 3px #ffffff;
   z-index:20;
   cursor:pointer;
   animation:badgeGlowPulse 2s infinite ease-in-out;
   transition:transform .2s ease;
 }
-.brand-image-hotline-badge:hover{
-  transform:scale(1.06);
-  background:linear-gradient(135deg,#059669,#047857);
-}
 .brand-image-hotline-badge .badge-icon{
-  font-size:1.3rem;
+  font-size:1.2rem;
   display:inline-block;
   animation:phoneWiggle 1.5s infinite ease-in-out;
 }
 .brand-image-hotline-badge .badge-txt{
-  font-size:.9rem;
+  font-size:clamp(0.78rem, 2.3vw, 0.88rem);
   font-weight:700;
-  letter-spacing:.3px;
 }
 .brand-image-hotline-badge .badge-num{
-  font-size:1.35rem;
+  font-size:clamp(1.15rem, 3.8vw, 1.35rem);
   font-weight:900;
   letter-spacing:1px;
   direction:ltr;
@@ -478,40 +446,41 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
 .brand-image-hotline-badge .badge-tag{
   background:#ffffff;
   color:#065f46;
-  padding:3px 9px;
+  padding:2px 8px;
   border-radius:20px;
-  font-size:.72rem;
+  font-size:.7rem;
   font-weight:800;
 }
 
 @keyframes badgeGlowPulse{
-  0%{box-shadow:0 6px 20px rgba(16,185,129,0.5), 0 0 0 3px #ffffff}
-  50%{box-shadow:0 8px 30px rgba(16,185,129,0.9), 0 0 0 6px rgba(16,185,129,0.4)}
-  100%{box-shadow:0 6px 20px rgba(16,185,129,0.5), 0 0 0 3px #ffffff}
+  0%{box-shadow:0 4px 15px rgba(16,185,129,0.5), 0 0 0 3px #ffffff}
+  50%{box-shadow:0 6px 25px rgba(16,185,129,0.9), 0 0 0 5px rgba(16,185,129,0.4)}
+  100%{box-shadow:0 4px 15px rgba(16,185,129,0.5), 0 0 0 3px #ffffff}
 }
 @keyframes phoneWiggle{
   0%,100%{transform:rotate(0deg)}
-  20%{transform:rotate(-15deg)}
-  40%{transform:rotate(15deg)}
-  60%{transform:rotate(-10deg)}
-  80%{transform:rotate(10deg)}
+  20%{transform:rotate(-12deg)}
+  40%{transform:rotate(12deg)}
+  60%{transform:rotate(-8deg)}
+  80%{transform:rotate(8deg)}
 }
 
-/* Kiriazi WhatsApp Booking Form (Directly Below Image) */
+/* Kiriazi WhatsApp Form */
 .brand-form-card{
   background:#ffffff;
   border:2px solid #10B981;
-  border-radius:18px;
-  padding:25px 22px;
+  border-radius:16px;
+  padding:clamp(16px, 3.5vw, 24px);
+  width:100%;
   max-width:580px;
-  margin:20px auto 30px;
+  margin:18px auto 25px;
   box-shadow:var(--shadow-md);
   text-align:right;
 }
 .brand-form-card h3{
   color:#065f46;
-  font-size:1.3rem;
-  margin-bottom:6px;
+  font-size:clamp(1.1rem, 3.4vw, 1.3rem);
+  margin-bottom:5px;
   display:flex;
   align-items:center;
   gap:8px;
@@ -519,147 +488,117 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
 }
 .brand-form-card p{
   color:#4b5563;
-  font-size:.88rem;
-  margin-bottom:18px;
-}
-.brand-form-card .form-group{
+  font-size:clamp(0.82rem, 2.3vw, 0.88rem);
   margin-bottom:14px;
 }
+.brand-form-card .form-group{margin-bottom:12px}
 .brand-form-card .form-group label{
   display:block;
-  margin-bottom:5px;
+  margin-bottom:4px;
   font-weight:700;
   color:#111827;
-  font-size:.9rem;
+  font-size:clamp(0.82rem, 2.3vw, 0.88rem);
 }
 .brand-form-card .form-group input,
 .brand-form-card .form-group select,
 .brand-form-card .form-group textarea{
   width:100%;
-  padding:11px 14px;
+  max-width:100%;
+  padding:10px 12px;
   border:1.5px solid #d1d5db;
   border-radius:10px;
   font-family:inherit;
-  font-size:.92rem;
+  font-size:clamp(0.85rem, 2.4vw, 0.92rem);
   background:#ffffff;
   color:#111827;
-  transition:all .2s;
-}
-.brand-form-card .form-group input:focus,
-.brand-form-card .form-group select:focus,
-.brand-form-card .form-group textarea:focus{
-  outline:none;
-  border-color:#10B981;
-  box-shadow:0 0 0 3px rgba(16,185,129,0.2);
 }
 .brand-form-card .form-row{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:10px;
 }
 .brand-form-card textarea{
   resize:vertical;
-  min-height:80px;
+  min-height:75px;
 }
 .btn-submit-kiriazi{
   width:100%;
   background:linear-gradient(135deg,#10B981,#059669);
   color:#ffffff;
-  padding:14px;
+  padding:13px;
   border:none;
   border-radius:10px;
   font-weight:800;
-  font-size:1.05rem;
+  font-size:clamp(0.92rem, 2.6vw, 1.05rem);
   cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  box-shadow:0 6px 20px rgba(16,185,129,0.35);
+  gap:8px;
+  box-shadow:0 6px 18px rgba(16,185,129,0.35);
   transition:all .3s;
   font-family:inherit;
-}
-.btn-submit-kiriazi:hover{
-  background:linear-gradient(135deg,#059669,#047857);
-  transform:translateY(-2px);
-  box-shadow:0 8px 25px rgba(16,185,129,0.5);
 }
 
 /* Floating WhatsApp Button */
 .float-whatsapp{
-  position:fixed;bottom:25px;left:25px;
+  position:fixed;bottom:20px;left:20px;
   background:var(--whatsapp);color:#ffffff;
-  padding:12px 22px;border-radius:50px;
-  display:flex;align-items:center;gap:10px;
-  font-weight:800;box-shadow:0 8px 25px rgba(37,211,102,0.45);
+  padding:10px 18px;border-radius:50px;
+  display:flex;align-items:center;gap:8px;
+  font-weight:800;font-size:.88rem;
+  box-shadow:0 6px 20px rgba(37,211,102,0.45);
   z-index:999;border:2px solid #ffffff;
-  transition:all .3s;
 }
-.float-whatsapp:hover{transform:translateY(-3px);background:var(--whatsapp-dark)}
-.float-whatsapp svg{width:26px;height:26px;fill:#ffffff}
+.float-whatsapp svg{width:24px;height:24px;fill:#ffffff}
 
-/* ========== Responsive Media Queries ========== */
 @media (max-width:900px){
   :root{
     --top-bar-height:42px;
-    --nav-height:64px;
+    --nav-height:60px;
   }
-  .top-contact-bar{gap:15px;font-size:.82rem;padding:0 12px}
-  .hero-content,.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}
-  .hero-text h1{font-size:2.2rem}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:25px}
+  .hero-content,.about-grid,.contact-grid{grid-template-columns:1fr;gap:24px}
+  .footer-grid{grid-template-columns:repeat(2, 1fr);gap:20px}
   .nav-links{
     position:fixed;top:calc(var(--top-bar-height) + var(--nav-height));
     right:-100%;background:#ffffff;flex-direction:column;
-    width:85%;max-width:320px;height:100vh;padding:25px 20px;
-    transition:right .3s ease;border-left:2px solid var(--gold);
-    box-shadow:var(--shadow-lg);gap:15px;
+    width:82%;max-width:300px;height:calc(100vh - (var(--top-bar-height) + var(--nav-height)));
+    padding:20px;transition:right .3s ease;border-left:2px solid var(--gold);
+    box-shadow:var(--shadow-lg);gap:14px;overflow-y:auto;
   }
   .nav-links.active{right:0}
   .menu-toggle{display:block}
   .nav-cta{display:none}
-  .float-whatsapp span{display:none}
-  .float-whatsapp{padding:14px;border-radius:50%;bottom:20px;left:20px}
-  .brands-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .modal-cta-buttons,.info-grid,.brand-hero-contact-inner{grid-template-columns:1fr;gap:15px}
-  .modal-header{padding:40px 15px 30px}
-  .modal-header h2{font-size:1.8rem}
-  .modal-close{top:60px;left:15px;width:40px;height:40px;font-size:1.4rem}
+  .modal-cta-buttons,.info-grid,.brand-hero-contact-inner{grid-template-columns:1fr;gap:12px}
   .brand-form-card .form-row{grid-template-columns:1fr}
 }
 
 @media (max-width:600px){
   :root{
-    --top-bar-height:50px;
-    --nav-height:60px;
+    --top-bar-height:38px;
+    --nav-height:56px;
   }
   .top-contact-bar{
-    flex-direction:row;
-    justify-content:space-around;
-    padding:0 8px;
-    font-size:.78rem;
-    gap:6px;
+    gap:10px;
+    padding:4px 8px;
   }
-  .hero{padding:30px 15px}
-  .hero-text h1{font-size:1.75rem}
-  .hero-text p{font-size:1rem}
-  .hero-buttons{flex-direction:column;width:100%}
-  .hero-buttons .btn{width:100%;justify-content:center}
-  .section-header h2{font-size:1.7rem}
-  .modal-brand-image{height:220px}
+  .top-contact-bar a{font-size:0.75rem;gap:4px}
+  .hero-buttons{flex-direction:column}
+  .hero-buttons .btn{width:100%}
+  .brands-grid{grid-template-columns:repeat(2, 1fr);gap:10px}
+  .brand-card{padding:12px 6px}
   .brand-image-hotline-badge{
-    bottom:10px;
-    right:10px;
-    left:10px;
+    bottom:8px;
+    right:8px;
+    left:8px;
     justify-content:center;
-    padding:8px 14px;
-    gap:8px;
+    padding:7px 12px;
   }
-  .brand-image-hotline-badge .badge-txt{font-size:.82rem}
-  .brand-image-hotline-badge .badge-num{font-size:1.2rem}
-  .brand-sticky-bar{padding:10px;gap:8px}
-  .brand-sticky-bar a{width:100%;justify-content:center}
-  .footer-grid{grid-template-columns:1fr}
+  .brand-sticky-bar{padding:8px;gap:6px}
+  .brand-sticky-bar a{width:100%;justify-content:center;padding:7px}
+  .footer-grid{grid-template-columns:1fr;gap:18px}
+  .float-whatsapp span{display:none}
+  .float-whatsapp{padding:12px;border-radius:50%;bottom:16px;left:16px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -793,7 +732,7 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
   </div>
 </section>
 
-<!-- Before/After Interactive Section -->
+<!-- Before/After Section -->
 <section class="before-after" id="gallery">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
@@ -846,7 +785,7 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
   </div>
 </section>
 
-<!-- Brands Section (Pure Arabic Names) -->
+<!-- Brands Section -->
 <section class="brands" id="brands">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
@@ -951,8 +890,8 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
           <div class="contact-details"><h4>مواعيد العمل واستقبال البلاغات</h4><p>يومياً من 9:00 صباحاً حتى 11:00 مساءً</p></div>
         </div>
         <a href="https://wa.me/201102670999" target="_blank" class="whatsapp-box" onclick="trackConversion('WhatsApp_BigBox')">
-          <div style="font-size:2rem;margin-bottom:6px">💬</div>
-          <div style="font-size:1.15rem;font-weight:800">محادثة فورية مع خدمة العملاء</div>
+          <div style="font-size:1.8rem;margin-bottom:4px">💬</div>
+          <div style="font-size:1.05rem;font-weight:800">محادثة فورية مع خدمة العملاء</div>
           <span class="wa-number">01102670999</span>
         </a>
         <a href="tel:19387" class="hotline-box" onclick="trackConversion('Call_BigBox_19387')">
@@ -980,7 +919,7 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
             </select>
           </div>
           <div class="form-group"><label>وصف العطل أو الشكوى *</label><textarea id="gIssue" required placeholder="اشرح مظهر العطل بالتفصيل..."></textarea></div>
-          <button type="submit" class="btn btn-whatsapp" style="width:100%;justify-content:center;padding:15px">💬 إرسال الطلب عبر واتساب</button>
+          <button type="submit" class="btn btn-whatsapp" style="width:100%;justify-content:center;padding:14px">💬 إرسال الطلب عبر واتساب</button>
         </form>
       </div>
     </div>
@@ -1022,8 +961,8 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-      <div class="logo" style="color:var(--gold-light);margin-bottom:15px"><div class="logo-icon">🔧</div><span>HomeTech Service</span></div>
-      <p style="font-size:.9rem;line-height:1.8">مركز مستقل متخصص في صيانة وإصلاح الأجهزة المنزلية بالجيزة والقاهرة الكبرى بخبرة ميدانية موثوقة.</p>
+      <div class="logo" style="color:var(--gold-light);margin-bottom:12px"><div class="logo-icon">🔧</div><span>HomeTech Service</span></div>
+      <p style="font-size:.88rem;line-height:1.7">مركز مستقل متخصص في صيانة وإصلاح الأجهزة المنزلية بالجيزة والقاهرة الكبرى بخبرة ميدانية موثوقة.</p>
       <div class="footer-legal">
         <strong>السجل التجاري:</strong> 321507<br>
         <strong>الخط الساخن:</strong> <a href="tel:19387" onclick="trackConversion('Call_Footer_19387')" style="color:var(--gold-light);font-weight:700">19387</a><br>
@@ -1051,12 +990,12 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
       <h4>معلومات والتراخيص</h4>
       <a href="#privacy">سياسة الخصوصية</a>
       <a href="#privacy">شروط الضمان</a>
-      <p style="color:#9ca3af;font-size:.85rem;margin-top:10px">خدمة فورية بالمنزل طوال أيام الأسبوع من 9 صباحاً حتى 11 مساءً</p>
+      <p style="color:#9ca3af;font-size:.82rem;margin-top:8px">خدمة فورية بالمنزل طوال أيام الأسبوع من 9 صباحاً حتى 11 مساءً</p>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 HomeTech Service - جميع الحقوق محفوظة - سجل تجاري 321507</p>
-    <p style="font-size:.8rem;margin-top:6px;color:#6b7280">مركز صيانة مستقل وغير تابع كوكيل حصري لأي علامة تجارية.</p>
+    <p style="font-size:.78rem;margin-top:4px;color:#6b7280">مركز صيانة مستقل وغير تابع كوكيل حصري لأي علامة تجارية.</p>
   </div>
 </footer>
 
@@ -1074,7 +1013,6 @@ footer{background:#111827;color:#e5e7eb;padding:50px 20px 20px;border-top:4px so
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-// بيانات الماركات الـ 23 باللغة العربية بالكامل وبدون أي أسماء إنجليزية
 const brandsData = [
   { slug: 'kiriazi', name: 'كريازي', letter: 'ك', image: 'https://i.postimg.cc/NFTKNFPK/Gemini-Generated-Image-mvt76amvt76amvt7.jpg', appliances: ['ثلاجات وديب فريزر','غسالات ملابس','بوتاجازات وأفران'], issues: ['ضعف أو توقف التبريد بالفريزر','تسريب مياه أو تراكم ثلج','توقف مفاتيح وشعلات البوتاجاز'], overview: 'تعتبر أجهزة كريازي من أعرق الأجهزة المنزلية المنتشرة بمصر، وفنيونا مدربون على إصلاح كافة أعطال ثلاجات وديب فريزر وبوتاجازات كريازي وقطع غيارها بالمنزل.' },
   { slug: 'whitepoint', name: 'وايت بوينت', letter: 'و', appliances: ['غسالات ملابس','ثلاجات','سخانات'], issues: ['مشاكل كروت التحكم الإلكترونية','توقف طلمبة الطرد أو العصر','أعطال دورة إذابة الثلج'], overview: 'خبرة متقدمة في الكشف الإلكتروني على غسالات وثلاجات وايت بوينت وحل مشاكلها في أسرع وقت.' },
@@ -1086,24 +1024,23 @@ const brandsData = [
   { slug: 'fresh', name: 'فريش', letter: 'ف', appliances: ['بوتاجازات','ثلاجات وديب فريزر','غسالات وتكييف'], issues: ['مشاكل الإشعال الذاتي للشعلات','توقف مروحة التوزيع بالفرن','أعطال تايمر إذابة الثلج'], overview: 'نوفر حلولاً سريعة وميدانية لصيانة كافة موديلات أجهزة فريش المنزلية.' },
   { slug: 'unionaire', name: 'يونيون إير', letter: 'ي', appliances: ['مكيفات هواء','بوتاجازات','شاشات وغسالات'], issues: ['توقف كومبريسور التكييف عن العمل','أعطال مفاتيح شعلات البوتاجاز','انسداد مواسير الصرف بالتكييف'], overview: 'فنيون متخصصون في صيانة مكيفات وبوتاجازات يونيون إير بالمنزل.' },
   { slug: 'tornado', name: 'تورنيدو', letter: 'ت', appliances: ['غسالات ملابس','ثلاجات','أجهزة طهي وميكروويف'], issues: ['أعطال برامج الغسيل الأوتوماتيك','عدم اكتمال دورة التجفيف','أعطال التبريد بالثلاجة'], overview: 'صيانة شاملة وسريعة لأجهزة تورنيدو المنزلية مع الفحص الميداني الدقيق.' },
-  { slug: 'bosch', name: 'بوش', letter: 'ب', appliances: ['غسالات ملابس','غسالات أطباق','أفران وثلاجات'], issues: ['أكواد أخطاء طلمبة الصرف','تسريب مياه أسفل الغسالة','أعطال تسخين السخانات الداخلية'], overview: 'دقة عالية في التعامل مع الأنظمة الألمانية المعقدة لأجهزة بوش المنزلية.' },
+  { slug: 'bosch', name: 'بوش', letter: 'ب', appliances: ['غسالات ملابس','غسالات أطباق','أفران وثلاجات'], issues: ['أكواد أخطاء طلمبة الصرف','تسريب مياه أسفل الغسالة','أعطال تسخين السخانات الداخلية'], overview: 'دقة عالية في التعامل مع الأنظمة المعقدة لأجهزة بوش المنزلية.' },
   { slug: 'zanussi', name: 'زانوسي', letter: 'ز', appliances: ['غسالات ملابس','سخانات غاز','أفران وثلاجات'], issues: ['تلف رولمان البلي والمساعدين','صوت ضوضاء بالعصر','توقف إشعال سخان الغاز'], overview: 'عقود من الخبرة العملية بأعطال غسالات وسخانات زانوسي بمختلف موديلاتها.' },
   { slug: 'ariston', name: 'اريستون', letter: 'أ', appliances: ['غسالات أطباق','غسالات ملابس','سخانات مياه'], issues: ['أعطال حساسات تسخين المياه','توقف مضخة تصريف المياه','مشاكل لوحة التحكم الرقمية'], overview: 'خدمة دقيقة لأجهزة اريستون مع توفير الفحص الشامل وضمان على الإصلاح.' },
   { slug: 'indesit', name: 'اندست', letter: 'إ', appliances: ['غسالات ملابس','أفران','ثلاجات'], issues: ['توقف حلة الغسالة عن الدوران','تلف صمام سحب المياه','أعطال ثرموستات الحرارة'], overview: 'فريق صيانة متنقل لإصلاح غسالات وأفران اندست في مكانها بالمنزل.' },
   { slug: 'ideal', name: 'ايديال', letter: 'إ', appliances: ['ثلاجات ديفروست ونوفروست','غسالات زانوسي القديمة','سخانات'], issues: ['تراكم الثلج الشديد داخل الثلاجة','تآكل كاوتش الأبواب والتسريب','توقف موتور التبريد'], overview: 'صيانة وتجديد متكامل لأجهزة ايديال العريقة واستعادة كفاءتها الكاملة.' },
-  { slug: 'frigidaire', name: 'فريجدير', letter: 'ف', appliances: ['ثلاجات وفريزر أمريكي','غسالات','مكيفات'], issues: ['أعطال صانع الثلج الآلي','انسداد فلاتر المياه الداخلية','تراجع كفاءة الكمبريسور الضخم'], overview: 'صيانة الأجهزة الأمريكية الكبيرة من فريجدير بدقة وأمان تامين.' },
+  { slug: 'frigidaire', name: 'فريجدير', letter: 'ف', appliances: ['ثلاجات وفريزر كبير','غسالات','مكيفات'], issues: ['أعطال صانع الثلج الآلي','انسداد فلاتر المياه الداخلية','تراجع كفاءة الكمبريسور'], overview: 'صيانة الأجهزة الكبيرة من فريجدير بدقة وأمان تامين.' },
   { slug: 'hitachi', name: 'هيتاشي', letter: 'هـ', appliances: ['ثلاجات دولابي','غسالات','مكيفات'], issues: ['أعطال لوحات الإنفرتر الحساسة','توقف موتور مروحة الفريزر','مشاكل مفصلات الأبواب المفرغة'], overview: 'فحص تقني متقدم لثلاجات ومكيفات هيتاشي المتطورة.' },
   { slug: 'panasonic', name: 'باناسونيك', letter: 'ب', appliances: ['مكيفات','ميكروويف','غسالات'], issues: ['عطل محول وماجنترون الميكروويف','مشاكل تبريد المكيفات','أعطال كارتة الغسالة'], overview: 'إصلاح ميداني سريع لأجهزة باناسونيك وميكروويفاتها بضمان موثق.' },
   { slug: 'kelvinator', name: 'كلفينيتور', letter: 'ك', appliances: ['ثلاجات ضخمة','ديب فريزر أفقي','مكيفات'], issues: ['تسريب شحنة الفريون بالدائرة','تلف تايمر ومروحة التبريد','صوت مرتفع للضاغط'], overview: 'خبرة متوارثة في صيانة ثلاجات وديب فريزر كلفينيتور الكبيرة.' },
   { slug: 'daewoo', name: 'دايو', letter: 'د', appliances: ['غسالات أوتوماتيك','ميكروويف','ثلاجات'], issues: ['أعطال قفل الباب الكهربائي','توقف دوران طبق الميكروويف','مشاكل كفاءة تبريد الفريزر'], overview: 'إصلاح اقتصادي وسريع لأجهزة دايو المنزلية المتنوعة.' },
   { slug: 'electrostar', name: 'الكتروستار', letter: 'ا', appliances: ['ديب فريزر أدراج','ثلاجات','غسالات'], issues: ['توقف لوحة البيان الحرارية','ضعف التجميد بالأدراج السفلية','أعطال حساسات الإذابة'], overview: 'صيانة فورية وميدانية لديب فريزر وثلاجات الكتروستار بالمنزل.' },
   { slug: 'basaab', name: 'باساب', letter: 'ب', appliances: ['ديب فريزر','ثلاجات','غسالات'], issues: ['مشاكل دائرة التبريد اليدوية','تلف الثرموستات الميكانيكي','توقف المحرك عن الإقلاع'], overview: 'خدمة موثوقة لأجهزة وديب فريزر باساب مع ضمان خطي معتمد.' },
-  { slug: 'ge', name: 'جنرال اليكتريك', letter: 'ج', appliances: ['ثلاجات سعة كبيرة','غسالات أمريكي','أفران بلت إن'], issues: ['أعطال بوردة التبريد الإلكترونية','توقف تدفق مياه الموزع','أعطال مفاتيح الأفران الكبيرة'], overview: 'صيانة احترافية لأجهزة جنرال اليكتريك الأمريكية بقطع غيار أصلية.' }
+  { slug: 'ge', name: 'جنرال اليكتريك', letter: 'ج', appliances: ['ثلاجات سعة كبيرة','غسالات متطورة','أفران بلت إن'], issues: ['أعطال بوردة التبريد الإلكترونية','توقف تدفق مياه الموزع','أعطال مفاتيح الأفران الكبيرة'], overview: 'صيانة احترافية لأجهزة جنرال اليكتريك بقطع غيار أصلية.' }
 ];
 
 const defaultTitle = 'HomeTech Service | مركز صيانة الأجهزة المنزلية';
 
-// إنشاء شبكة الماركات باللغة العربية
 document.getElementById('brandsGrid').innerHTML = brandsData.map(brand => `
   <div class="brand-card" data-aos="zoom-in" onclick="openBrand('${brand.slug}')">
     <div class="brand-letter">${brand.letter}</div>
@@ -1114,7 +1051,6 @@ document.getElementById('brandsGrid').innerHTML = brandsData.map(brand => `
   </div>
 `).join('');
 
-// فتح نافذة الماركة وتخصيص كريازي بالكامل
 function openBrand(slug) {
   const brand = brandsData.find(b => b.slug === slug);
   if (!brand) return;
@@ -1131,12 +1067,10 @@ function openBrand(slug) {
   document.title = `صيانة أجهزة ${brand.name} | مركز HomeTech Service`;
   history.pushState({brand: slug}, '', `#brand=${slug}`);
 
-  // تتبع حدث عرض صفحة الماركة في جوجل أدز
   trackConversion(`View_Brand_${slug}`);
 
   const waMessage = encodeURIComponent(`مرحباً مركز HomeTech، أريد طلب صيانة منزلية لجهاز ${brand.name}`);
 
-  // فورم كريازي المخصص للواتساب
   const kiriaziBookingForm = isKiriazi ? `
     <div class="brand-form-card">
       <h3><span>📝</span> طلب صيانة أجهزة كريازي بالمنزل</h3>
@@ -1182,7 +1116,6 @@ function openBrand(slug) {
     </div>
   ` : '';
 
-  // محتوى النافذة المنبثقة
   document.getElementById('modalContent').innerHTML = `
     <div class="brand-sticky-bar">
       <div class="bar-title">
@@ -1229,7 +1162,7 @@ function openBrand(slug) {
 
         <h2>صيانة أجهزة <span>${brand.name}</span></h2>
         <p class="modal-lead">${brand.overview}</p>
-        <div class="modal-badges" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px">
+        <div class="modal-badges">
           <div class="badge">✓ سجل تجاري 321507</div>
           <div class="badge">✓ مركز صيانة حر ومستقل</div>
           <div class="badge">✓ ضمان موثق على الإصلاح</div>
@@ -1244,7 +1177,7 @@ function openBrand(slug) {
           <div class="card-text">
             <div class="card-label">اتصل بالخط الساخن الآن</div>
             <div class="card-number">19387</div>
-            <div class="card-subtext" style="font-size:.82rem;opacity:.9">استقبال البلاغات 9ص - 11م</div>
+            <div class="card-subtext">استقبال البلاغات 9ص - 11م</div>
           </div>
         </a>
         <a href="https://wa.me/201102670999?text=${waMessage}" target="_blank" class="brand-contact-card whatsapp-card" onclick="trackConversion('WhatsApp_ModalHero_${brand.slug}')">
@@ -1252,7 +1185,7 @@ function openBrand(slug) {
           <div class="card-text">
             <div class="card-label">واتساب الدعم الفني</div>
             <div class="card-number">01102670999</div>
-            <div class="card-subtext" style="font-size:.82rem;opacity:.9">راسلنا للرد وحجز الزيارة فوراً</div>
+            <div class="card-subtext">راسلنا للرد وحجز الزيارة فوراً</div>
           </div>
         </a>
       </div>
@@ -1316,7 +1249,6 @@ function openBrand(slug) {
   modalEl.scrollTo(0, 0);
 }
 
-// معالجة إرسال فورم كريازي إلى الواتساب
 function handleKiriaziBooking(e) {
   e.preventDefault();
   const name = document.getElementById('kzName').value.trim();
@@ -1325,7 +1257,6 @@ function handleKiriaziBooking(e) {
   const device = document.getElementById('kzDevice').value;
   const issue = document.getElementById('kzIssue').value.trim();
 
-  // إرسال حدث التحويل الناجح إلى إعلانات جوجل
   trackConversion('Kiriazi_Form_Submission');
 
   const msg = 
@@ -1342,7 +1273,6 @@ _تم الإرسال عبر صفحة صيانة كريازي بموقع HomeTech
   window.open(`https://wa.me/201102670999?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// إغلاق نافذة الماركة
 function closeBrand() {
   const modalEl = document.getElementById('brandModal');
   modalEl.classList.remove('active');
@@ -1352,7 +1282,6 @@ function closeBrand() {
   history.pushState('', '', window.location.pathname);
 }
 
-// التعامل مع أزرار الرجوع بالمتصفح والروابط المباشرة
 window.addEventListener('popstate', () => {
   const hash = window.location.hash;
   if (hash.startsWith('#brand=')) {
@@ -1373,7 +1302,6 @@ window.addEventListener('load', () => {
   }
 });
 
-// فتح وإغلاق قائمة الموبايل
 function toggleMenu() {
   document.getElementById('navLinks').classList.toggle('active');
 }
@@ -1381,16 +1309,14 @@ function closeNav() {
   document.getElementById('navLinks').classList.remove('active');
 }
 
-// إغلاق القائمة عند النقر خارجها على الموبايل
 document.addEventListener('click', (e) => {
   const navLinks = document.getElementById('navLinks');
   const toggleBtn = document.querySelector('.menu-toggle');
-  if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)) {
+  if (navLinks && navLinks.classList.contains('active') && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)) {
     closeNav();
   }
 });
 
-// تحكم أسئلة الـ FAQ المنسدلة
 document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.parentElement;
@@ -1400,7 +1326,6 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-// تحكم عارض قبل وبعد (Interactive Before/After Slider)
 document.querySelectorAll('[data-slider]').forEach(slider => {
   const beforeImg = slider.querySelector('.ba-before');
   const handle = slider.querySelector('.ba-handle');
@@ -1423,7 +1348,6 @@ document.querySelectorAll('[data-slider]').forEach(slider => {
   window.addEventListener('touchend', () => { isDragging = false; });
 });
 
-// معالجة نموذج الصيانة العام في صفحة التواصل
 document.getElementById('generalMaintenanceForm').addEventListener('submit', e => {
   e.preventDefault();
   const name = document.getElementById('gName').value.trim();
@@ -1432,7 +1356,6 @@ document.getElementById('generalMaintenanceForm').addEventListener('submit', e =
   const device = document.getElementById('gDevice').value;
   const issue = document.getElementById('gIssue').value.trim();
 
-  // إرسال حدث التحويل الناجح إلى إعلانات جوجل
   trackConversion('General_Form_Submission');
 
   const msg = 
@@ -1449,9 +1372,7 @@ _تم الإرسال عبر موقع HomeTech Service_`;
   window.open(`https://wa.me/201102670999?text=${encodeURIComponent(msg)}`, '_blank');
 });
 
-// تهيئة حركات الظهور
-AOS.init({ duration: 750, once: true });
+AOS.init({ duration: 700, once: true });
 </script>
-
 </body>
 </html>
