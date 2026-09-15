@@ -15,6 +15,24 @@
 
   gtag('config', 'AW-18345672623');
 
+  // دالة الإحالة الناجحة عند النقر على الاتصال لـ Google Ads
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18345672623/XAE9CJrCs_gcEK__8qtE',
+          'event_callback': callback
+      });
+    } else {
+      callback();
+    }
+    return false;
+  }
+
   function trackConversion(actionLabel, sendTo = null) {
     if (typeof gtag === 'function') {
       const conversionData = {
@@ -610,7 +628,7 @@ footer{background:#111827;color:#e5e7eb;padding:clamp(35px, 6vw, 50px) clamp(14p
 
 <!-- Top Contact Bar -->
 <div class="top-contact-bar">
-  <a href="tel:19387" onclick="trackConversion('Call_TopBar_19387')">
+  <a href="tel:19387" onclick="trackConversion('Call_TopBar_19387'); return gtag_report_conversion('tel:19387');">
     <span>📞</span>
     <span>الخط الساخن: 19387</span>
   </a>
@@ -655,7 +673,7 @@ footer{background:#111827;color:#e5e7eb;padding:clamp(35px, 6vw, 50px) clamp(14p
       </div>
       <div class="hero-buttons">
         <a href="https://wa.me/201102670999" target="_blank" class="btn btn-whatsapp" onclick="trackConversion('WhatsApp_Hero')">💬 تواصل عبر الواتساب</a>
-        <a href="tel:19387" class="btn btn-primary" onclick="trackConversion('Call_Hero_19387')">📞 الخط الساخن: 19387</a>
+        <a href="tel:19387" class="btn btn-primary" onclick="trackConversion('Call_Hero_19387'); return gtag_report_conversion('tel:19387');">📞 الخط الساخن: 19387</a>
       </div>
     </div>
     <div data-aos="fade-right">
@@ -875,7 +893,7 @@ footer{background:#111827;color:#e5e7eb;padding:clamp(35px, 6vw, 50px) clamp(14p
         <h3>بيانات التواصل المباشر</h3>
         <div class="contact-item">
           <div class="contact-icon">📞</div>
-          <div class="contact-details"><h4>الخط الساخن السريع</h4><p><a href="tel:19387" onclick="trackConversion('Call_ContactSec_19387')" style="color:var(--black);font-size:1.35rem;font-weight:900">19387</a></p></div>
+          <div class="contact-details"><h4>الخط الساخن السريع</h4><p><a href="tel:19387" onclick="trackConversion('Call_ContactSec_19387'); return gtag_report_conversion('tel:19387');" style="color:var(--black);font-size:1.35rem;font-weight:900">19387</a></p></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">💬</div>
@@ -894,7 +912,7 @@ footer{background:#111827;color:#e5e7eb;padding:clamp(35px, 6vw, 50px) clamp(14p
           <div style="font-size:1.05rem;font-weight:800">محادثة فورية مع خدمة العملاء</div>
           <span class="wa-number">01102670999</span>
         </a>
-        <a href="tel:19387" class="hotline-box" onclick="trackConversion('Call_BigBox_19387')">
+        <a href="tel:19387" class="hotline-box" onclick="trackConversion('Call_BigBox_19387'); return gtag_report_conversion('tel:19387');">
           <div>📞 اضغط للاتصال بالخط الساخن</div>
           <span class="number">19387</span>
         </a>
@@ -965,7 +983,7 @@ footer{background:#111827;color:#e5e7eb;padding:clamp(35px, 6vw, 50px) clamp(14p
       <p style="font-size:.88rem;line-height:1.7">مركز مستقل متخصص في صيانة وإصلاح الأجهزة المنزلية بالجيزة والقاهرة الكبرى بخبرة ميدانية موثوقة.</p>
       <div class="footer-legal">
         <strong>السجل التجاري:</strong> 321507<br>
-        <strong>الخط الساخن:</strong> <a href="tel:19387" onclick="trackConversion('Call_Footer_19387')" style="color:var(--gold-light);font-weight:700">19387</a><br>
+        <strong>الخط الساخن:</strong> <a href="tel:19387" onclick="trackConversion('Call_Footer_19387'); return gtag_report_conversion('tel:19387');" style="color:var(--gold-light);font-weight:700">19387</a><br>
         <strong>واتساب:</strong> <a href="https://wa.me/201102670999" target="_blank" onclick="trackConversion('WhatsApp_Footer')" style="color:var(--gold-light);direction:ltr;display:inline-block;font-weight:700">01102670999</a>
       </div>
     </div>
@@ -1122,7 +1140,7 @@ function openBrand(slug) {
         <span class="pulse-dot"></span>
         <span>🔧 خدمة فورية متوفرة - صيانة أجهزة ${brand.name}</span>
       </div>
-      <a href="tel:19387" class="bar-hotline" onclick="trackConversion('Call_ModalSticky_19387_${brand.slug}')">
+      <a href="tel:19387" class="bar-hotline" onclick="trackConversion('Call_ModalSticky_19387_${brand.slug}'); return gtag_report_conversion('tel:19387');">
         <span>📞</span>
         <span>الخط الساخن:</span>
         <span class="bar-number">19387</span>
@@ -1148,7 +1166,7 @@ function openBrand(slug) {
           <div class="modal-brand-image-wrapper">
             <div class="modal-brand-image">
               <img src="${brand.image}" alt="صيانة أجهزة ${brand.name}" loading="eager">
-              <a href="tel:19387" class="brand-image-hotline-badge" title="اتصل بالخط الساخن فوراً" onclick="trackConversion('Call_ImageBadge_19387_${brand.slug}')">
+              <a href="tel:19387" class="brand-image-hotline-badge" title="اتصل بالخط الساخن فوراً" onclick="trackConversion('Call_ImageBadge_19387_${brand.slug}'); return gtag_report_conversion('tel:19387');">
                 <span class="badge-icon">📞</span>
                 <span class="badge-txt">اتصل فوراً:</span>
                 <span class="badge-num">19387</span>
@@ -1172,7 +1190,7 @@ function openBrand(slug) {
 
     <div class="brand-hero-contact">
       <div class="brand-hero-contact-inner">
-        <a href="tel:19387" class="brand-contact-card hotline-card" onclick="trackConversion('Call_ModalHero_19387_${brand.slug}')">
+        <a href="tel:19387" class="brand-contact-card hotline-card" onclick="trackConversion('Call_ModalHero_19387_${brand.slug}'); return gtag_report_conversion('tel:19387');">
           <div class="card-icon">📞</div>
           <div class="card-text">
             <div class="card-label">اتصل بالخط الساخن الآن</div>
@@ -1237,7 +1255,7 @@ function openBrand(slug) {
         <h3>📞 احجز زيارة الفني لمنزلك الآن</h3>
         <p>اتصل مباشرة بالخط الساخن أو تواصل مع فريق خدمة العملاء عبر الواتساب</p>
         <div class="modal-cta-buttons">
-          <a href="tel:19387" class="btn btn-primary" onclick="trackConversion('Call_ModalBottom_19387_${brand.slug}')">📞 اتصل: 19387</a>
+          <a href="tel:19387" class="btn btn-primary" onclick="trackConversion('Call_ModalBottom_19387_${brand.slug}'); return gtag_report_conversion('tel:19387');">📞 اتصل: 19387</a>
           <a href="https://wa.me/201102670999?text=${waMessage}" target="_blank" class="btn btn-whatsapp" onclick="trackConversion('WhatsApp_ModalBottom_${brand.slug}')">💬 واتساب: 01102670999</a>
         </div>
       </div>
