@@ -1392,5 +1392,37 @@ _تم الإرسال عبر موقع HomeTech Service_`;
 
 AOS.init({ duration: 700, once: true });
 </script>
+  <script>
+(function() {
+  // تم وضع رابط الـ Web App الخاص بك تلقائياً هنا
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuFvnSF4fFBHcbFYOcKVQ1TvSkPyttRr7rjOqu76lodLhRyQ-LA-WuLmeiNqxA7T3eQA/exec';
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const isGoogleAd = urlParams.has('gclid') ? 'إعلان ممول (Google Ads)' : 'زيارة عادية / مباشرة';
+
+  fetch('https://ipwho.is/')
+    .then(response => response.json())
+    .then(data => {
+      if (!data.success) return;
+
+      const payload = {
+        date: new Date().toLocaleString('ar-EG', { timeZone: 'Africa/Cairo' }),
+        ip: data.ip,
+        location: `${data.city} - ${data.country}`,
+        isp: data.connection ? data.connection.isp : 'غير محدد',
+        source: isGoogleAd,
+        userAgent: navigator.userAgent
+      };
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      });
+    })
+    .catch(err => console.log('Tracking Error:', err));
+})();
+</script>
 </body>
 </html>
