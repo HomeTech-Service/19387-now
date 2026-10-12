@@ -1392,13 +1392,67 @@ _تم الإرسال عبر موقع HomeTech Service_`;
 
 AOS.init({ duration: 700, once: true });
 </script>
-  <script>
+ <script>
 (function() {
-  // تم وضع رابط الـ Web App الخاص بك تلقائياً هنا
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCPIFV5DuOh4CW0Vi0DUMWZoCmhR22u2wcVJbqUt8AA0EbS6G_ayewfN05wPeDCHC2/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuFvnSF4fFBHcbFYOcKVQ1TvSkPyttRr7rjOqu76lodLhRyQ-LA-WuLmeiNqxA7T3eQA/exec';
 
   const urlParams = new URLSearchParams(window.location.search);
   const isGoogleAd = urlParams.has('gclid') ? 'إعلان ممول (Google Ads)' : 'زيارة عادية / مباشرة';
+
+  // 1. تحويل اسم المتصفح والجهاز إلى العربية
+  function getDeviceArabic() {
+    const ua = navigator.userAgent;
+    let browser = "متصفح آخر";
+    if (ua.includes("OPR/") || ua.includes("Opera")) browser = "أوبرا (Opera)";
+    else if (ua.includes("Edg/")) browser = "إيدج (Edge)";
+    else if (ua.includes("Chrome")) browser = "كروم (Chrome)";
+    else if (ua.includes("Safari")) browser = "سفاري (Safari)";
+    else if (ua.includes("Firefox")) browser = "فايرفوكس (Firefox)";
+
+    let os = "جهاز غير محدد";
+    if (ua.includes("Android")) os = "موبايل (أندرويد)";
+    else if (ua.includes("iPhone")) os = "آيفون (iOS)";
+    else if (ua.includes("Windows")) os = "كمبيوتر (ويندوز)";
+    else if (ua.includes("Macintosh")) os = "كمبيوتر (ماك)";
+
+    return `${browser} - ${os}`;
+  }
+
+  // 2. تحويل أسماء المدن والمحافظات المصرية إلى العربية
+  function translateLocation(city, country) {
+    const citiesMap = {
+      "cairo": "القاهرة", "giza": "الجيزة", "alexandria": "الإسكندرية",
+      "bilbeis": "بلبيس", "belbeis": "بلبيس", "assiut": "أسيوط", "asyut": "أسيوط",
+      "mansoura": "المنصورة", "tanta": "طنطا", "zagazig": "الزقازيق",
+      "suez": "السويس", "ismailia": "الإسماعيلية", "port said": "بورسعيد",
+      "fayoum": "الفيوم", "faiyum": "الفيوم", "beni suef": "بني سويف",
+      "minya": "المنيا", "sohag": "سوهاج", "qena": "قنا",
+      "luxor": "الأقصر", "aswan": "أسوان", "hurghada": "الغردقة",
+      "sharm el-sheikh": "شرم الشيخ", "damietta": "دمياط", "kafr el-sheikh": "كفر الشيخ",
+      "banha": "بنها", "benha": "بنها", "damanhur": "دمنهور", "damanhour": "دمنهور",
+      "6th of october": "6 أكتوبر", "helwan": "حلوان", "shubra el-kheima": "شبرا الخيمة",
+      "qalyub": "قليوب", "shebin el kom": "شبين الكوم", "arish": "العريش",
+      "mallawi": "ملوي", "mit ghamr": "ميت غمر", "desouk": "دسوق"
+    };
+
+    const cLower = (city || "").toLowerCase().trim();
+    const arCity = citiesMap[cLower] || city || "غير محدد";
+    const arCountry = (country === "Egypt" || country === "EG") ? "مصر" : (country || "");
+
+    return `${arCity} - ${arCountry}`;
+  }
+
+  // 3. تحويل شركات الإنترنت في مصر إلى أسماء عربية واضحة
+  function translateISP(isp) {
+    if (!isp) return "غير محدد";
+    const ispUpper = isp.toUpperCase();
+    if (ispUpper.includes("TE-AS") || ispUpper.includes("TE DATA") || ispUpper.includes("TELECOM EGYPT")) return "المصرية للاتصالات (WE)";
+    if (ispUpper.includes("ETISALAT")) return "اتصالات مصر (e&)";
+    if (ispUpper.includes("VODAFONE")) return "فودافون مصر";
+    if (ispUpper.includes("ORANGE") || ispUpper.includes("LINKDOTNET")) return "أورنج مصر";
+    if (ispUpper.includes("NOOR")) return "شركة نور داتا";
+    return isp;
+  }
 
   fetch('https://ipwho.is/')
     .then(response => response.json())
@@ -1408,10 +1462,10 @@ AOS.init({ duration: 700, once: true });
       const payload = {
         date: new Date().toLocaleString('ar-EG', { timeZone: 'Africa/Cairo' }),
         ip: data.ip,
-        location: `${data.city} - ${data.country}`,
-        isp: data.connection ? data.connection.isp : 'غير محدد',
+        location: translateLocation(data.city, data.country),
+        isp: translateISP(data.connection ? data.connection.isp : ''),
         source: isGoogleAd,
-        userAgent: navigator.userAgent
+        userAgent: getDeviceArabic()
       };
 
       fetch(SCRIPT_URL, {
